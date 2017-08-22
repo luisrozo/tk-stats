@@ -1,0 +1,536 @@
+<?xml version="1.0" encoding="UTF 8"?>
+
+<tasks>
+	<task>
+		<name>Einkaufszentrum?</name>
+		<limit>2</limit>
+		<what>
+			<field>bei Mediamarkt einkaufen</field>
+			<field>Bowling spielen</field>
+			<field>einen Kinofilm sehen</field>
+			<field>Eis essen, Geschenke kaufen</field>
+			<field>in die Spielhölle gehen</field>
+			<field>ins Fitnessstudio gehen</field>
+			<field>Klamotten kaufen</field>
+			<field>Kosmetik kaufen</field>
+			<field>Schuhe kaufen</field>
+			<field>shoppen gehen</field>
+			<field>Sportklamotten kaufen</field>
+			<field>Tapas essen</field>
+			<field>zu Ikea gehen</field>
+			<field>zum Friseur gehen</field>
+		</what>
+		<where>
+			<field>Puerta Europa (Algeciras)</field>
+			<field>El Corte Inglés (Cádiz)</field>
+			<field>Bahía Mar (El Puerto)</field>
+			<field>El Paseo (El Puerto)</field>
+			<field>Área Sur (Jerez)</field>
+			<field>Luz Shopping (Jerez)</field>
+			<field>San Fernando Plaza (San Fernando)</field>
+			<field>Bahía Sur (San Fernando)</field>
+			<field>Las Dunas (Sanlúcar)</field>
+		</where>
+	</task>
+	<task>
+		<name>Kino?</name>
+		<limit>3</limit>
+		<what>
+			<field>300 (Actionfilm)</field>
+			<field>Los juegos del hambre (Actionfilm)</field>
+			<field>V de Vendetta (Actionfilm)</field>
+			<field>Starwars (Science Fiction Film)</field>
+			<field>The avengers (Science Fiction Film)</field>
+			<field>Avatar (Fantasyfilm)</field>
+			<field>Harry Potter (Fantasyfilm)</field>
+			<field>Kill Bill (Thriller)</field>
+			<field>Pulp Fiction (Thriller)</field>
+			<field>Sweeney Todd (Thriller)</field>
+			<field>50 Sombras de Grey (Liebesfilm)</field>
+			<field>El diario de Noa (Liebesfilm)</field>
+			<field>Scary Movie (Komödie)</field>
+			<field>Ocho apellidos vascos (Komödie)</field>
+			<field>The Shining (Horrorfilm)</field>
+			<field>El exorcista (Horrorfilm)</field>
+			<field>Paranormal activity (Horrorfilm)</field>
+			<field>Pesadilla en Elm Street (Horrorfilm)</field>
+			<field>La novia cadáver (Animationsfilm)</field>
+			<field>Frozen (Animationsfilm)</field>
+			<field>Inside Out (Animationsfilm)</field>
+			<field>El lobo de Wall Street (Drama)</field>
+			<field>El pianista (Drama)</field>
+		</what>
+		<where>
+			<field>Multicines (Arcos)</field>
+			<field>Las Palomas (Algeciras)</field>
+			<field>Multicines El Centro (Cádiz)</field>
+			<field>Cinesur Bahía de Cádiz (Cádiz)</field>
+			<field>Las Salinas (Chiclana)</field>
+			<field>Mardeleva Producciones (Conil)</field>
+			<field>Multicines Bahía Mar (El Puerto)</field>
+			<field>Yelmo Cines Área Sur (Jerez)</field>
+			<field>Ábaco (Jerez)</field>
+			<field>Multicines Gran Sur (La Línea)</field>
+			<field>Odeón Multicines Bahía Plaza (Los Barrios)</field>
+			<field>Multicines Victoria Portalejo (Rota)</field>
+			<field>Cines Plaza (San Fernando)</field>
+			<field>Al Ándalus (Sanlúcar)</field>
+		</where>
+	</task>
+	<task>
+		<name>Theater?</name>
+		<limit>2</limit>
+		<what>
+			<field>El lago de los cisnes (Ballet)</field>
+			<field>Joaquín Cortés (Ballet)</field>
+			<field>Sara Baras (Ballet)</field>
+			<field>Chopin (Klavierkonzert)</field>
+			<field>Chirigóticas (Komödie)</field>
+			<field>David Bisbal (Konzert)</field>
+			<field>El Capullo de Jerez (Konzert)</field>
+			<field>Malú (Konzert)</field>
+			<field>Miguel Poveda (Konzert)</field>
+			<field>Raphael (Konzert)</field>
+			<field>Rozalén (Konzert)</field>
+			<field>50 sombras! (Musical)</field>
+			<field>El rey león (Musical)</field>
+			<field>Hoy no me puedo levantar (Musical)</field>
+			<field>Los Morancos (Musical)</field>
+			<field>El amor brujo (Oper)</field>
+			<field>Madame Butterfly (Oper)</field>
+		</what>
+		<where>
+			<field>Theater Florida (Algeciras)</field>
+			<field>Theater Falla (Cádiz)</field>
+			<field>Sala Central Lechera (Cádiz)</field>
+			<field>Theater Moderno (Chiclana)</field>
+			<field>Theater Pedro Muñoz Seca (El Puerto)</field>
+			<field>Theater Villamarta (Jerez)</field>
+			<field>Theater Miguel Mihura (Medina)</field>
+			<field>Theater Lope de Vega (Madrid)</field>
+			<field>Theater de las Cortes (San Fernando)</field>
+			<field>La Maestranza (Sevilla)</field>
+		</where>
+	</task>
+	<task>
+		<name>Disco?</name>
+		<limit>2</limit>
+		<what>
+			<field>Alkohol trinken</field>
+			<field>ein Konzert hören</field>
+			<field>Erasmusstudenten treffen</field>
+			<field>flirten, fotografieren</field>
+			<field>Freunde treffen</field>
+			<field>rauchen</field>
+			<field>Schnaps trinken</field>
+			<field>singen</field>
+			<field>tanzen</field>
+			<field>Whisky trinken</field>
+		</what>
+		<where>
+			<field>El Tesorillo (Arcos)</field>
+			<field>Aquí te quiero (Cádiz)</field>
+			<field>La Medussa (Cádiz)</field>
+			<field>Holiday (Cádiz)</field>
+			<field>Momart (Cádiz)</field>
+			<field>Coliseo (Chiclana)</field>
+			<field>Noha (Chiclana)</field>
+			<field>El Cortijo (Conil)</field>
+			<field>La Pontona (El Puerto)</field>
+			<field>(El Puerto)</field>
+			<field>La Galería (Jerez)</field>
+			<field>Bereber (Jerez)</field>
+			<field>Dementia (Sanlúcar)</field>
+			<field>Blue monkey (Jerez)</field>
+			<field>Makao (Jerez)</field>
+			<field>Iris (Medina)</field>
+			<field>Feel Café (San Fernando)</field>
+		</where>
+	</task>
+	<task>
+		<name>Strand?</name>
+		<limit>2</limit>
+		<what>
+			<field>angeln</field>
+			<field>Beach Ping Pong</field>
+			<field>Beachball spielen</field>
+			<field>Bier im Chiringuito trinken</field>
+			<field>Bingo spielen</field>
+			<field>einen Botellón machen</field>
+			<field>Freunde treffen</field>
+			<field>für die Uni lernen</field>
+			<field>Fußball spielen</field>
+			<field>grillen</field>
+			<field>joggen</field>
+			<field>Karten spielen</field>
+			<field>Kitesurfen</field>
+			<field>lesen</field>
+			<field>mit dem Tretboot fahren</field>
+			<field>quatschen</field>
+			<field>rauchen</field>
+			<field>relaxen</field>
+			<field>Sandfiguren bauen</field>
+			<field>schwimmen</field>
+			<field>segeln</field>
+			<field>Siesta schlafen</field>
+			<field>sonnen</field>
+			<field>spazieren gehen</field>
+			<field>surfen</field>
+		</what>
+		<where>
+			<field>Caños de Meca Strand (Barbate)</field>
+			<field>Zahora Strand (Barbate)</field>
+			<field>Bolonia Strand (Bolonia)</field>
+			<field>Caleta Strand (Cádiz)</field>
+			<field>Cortadura Strand (Cádiz)</field>
+			<field>Santa María del Mar Strand (Cádiz)</field>
+			<field>La Barrosa  Strand (Chiclana)</field>
+			<field>Roche Strand (Conil)</field>
+			<field>Valdelagrana Strand (El Puerto)</field>
+			<field>Cachucha Strand (Puerto Real)</field>
+			<field>Costa Ballena Strand (Rota)</field>
+			<field>Camposoto Strand (San Fernando)</field>
+			<field>Valdevaqueros Strand (Tarifa)</field>
+			<field>El Palmar Strand (Vejer)</field>
+			<field>Playa de los alemanes (Zahara)</field>
+		</where>
+	</task>
+	<task>
+		<name>Fußballstadion?</name>
+		<limit>2</limit>
+		<what>
+			<field>Barça gegen Madrid</field>
+			<field>Cádiz gegen Jerez</field>
+			<field>FC Bayern gegen Betis</field>
+			<field>Sevilla gegen Atlético de Madrid</field>
+			<field>Valencia CF gegen Athletic de Bilbao</field>
+			<field>Real Sociedad gegen Real Zaragoza</field>
+			<field>Betis gegen Sevilla</field>
+			<field>At. Madrid gegen Madrid</field>
+			<field>Barcelona gegen Espanyol</field>
+			<field>Valencia gegen Villarreal</field>
+			<field>Ath. Bilbao gegen Real Sociedad</field>
+			<field>Chelsea gegen Arsenal</field>
+			<field>Manchester City gegen Manchester United</field>
+			<field>Boca Juniors gegen River Plate</field>
+		</what>
+		<where>
+			<field>Allianz Arena</field>
+			<field>Anoeta Stadion</field>
+			<field>Benito Villamarín Stadion</field>
+			<field>Bernabeu</field>
+			<field>Camp Nou</field>
+			<field>Carranza Stadion</field>
+			<field>Ciudad de Manchester Stadion</field>
+			<field>Cornellà El Prat Stadion</field>
+			<field>Mestalla Stadion</field>
+			<field>Ramón Sánchez Pizjuán Stadion</field>
+			<field>Riazor Stadion</field>
+			<field>San Mamés Stadion</field>
+			<field>Stamford Bridge Stadion</field>
+			<field>Vicente Calderón Stadion</field>
+		</where>
+	</task>
+	<task>
+		<name>Sport?</name>
+		<limit>2</limit>
+		<what>
+			<field>Aerobic</field>
+			<field>Badminton</field>
+			<field>Basketball</field>
+			<field>BodyPump</field>
+			<field>Boxen</field>
+			<field>Crossfit</field>
+			<field>Fahrrad fahren</field>
+			<field>Fußball</field>
+			<field>Handball</field>
+			<field>Hockey</field>
+			<field>Joggen</field>
+			<field>Kanu fahren</field>
+			<field>Kitesurfen</field>
+			<field>Padel</field>
+			<field>Pilates</field>
+			<field>Schwimmen</field>
+			<field>Spinning</field>
+			<field>Squasch</field>
+			<field>Surfen</field>
+			<field>Tennis</field>
+			<field>Yoga</field>
+			<field>Zumba</field>
+		</what>
+		<where>
+			<field>Fitnessstudio Millenium (Cádiz)</field>
+			<field>Fitnessstudio Body Factory (Cádiz)</field>
+			<field>Elcano (Cádiz)</field>
+			<field>Genovés Park (Cádiz)</field>
+			<field>Tennisclub (Cádiz)</field>
+			<field>Sportzentrum Santa Ana (Chiclana)</field>
+			<field>Segel Club Vistahermosa (El Puerto)</field>
+			<field>Fitnessstudio Los Inmortales (San Fernando)</field>
+			<field>Camposoto Strand (San Fernando)</field>
+			<field>Guadalquivir (Sevilla)</field>
+			<field>Bolonia Strand (Tarifa)</field>
+		</where>
+	</task>
+	<task>
+		<name>Konzert?</name>
+		<limit>3</limit>
+		<what>
+			<field>30 seconds to mars</field>
+			<field>Abraham Mateo</field>
+			<field>Alejandro Sanz</field>
+			<field>Andy & Lucas</field>
+			<field>Antonio Orozco</field>
+			<field>Camilo Sesto</field>
+			<field>Chambao</field>
+			<field>Coldplay</field>
+			<field>El Barrio</field>
+			<field>Estopa</field>
+			<field>Extremoduro</field>
+			<field>Gemeliers</field>
+			<field>Isabel Pantoja</field>
+			<field>Jarabe de Palo</field>
+			<field>La niña Pastori</field>
+			<field>Luis Fonsi</field>
+			<field>Mago de Oz</field>
+			<field>Maldita Nerea</field>
+			<field>Malú</field>
+			<field>Maná</field>
+			<field>Manuel Carrasco</field>
+			<field>Pablo Alborán</field>
+			<field>Vetusta Morla</field>
+			<field>U2</field>
+		</what>
+		<where>
+			<field>Plaza de Toros (Algeciras)</field>
+			<field>Carranza Stadion (Cádiz)</field>
+			<field>Castillo de San Sebastián (Cádiz)</field>
+			<field>El Pelícano (Cádiz)</field>
+			<field>Falla Theater (Cádiz)</field>
+			<field>Sala Supersonic (Cádiz)</field>
+			<field>Victoria Strand (Cádiz)</field>
+			<field>Fußballstadion (Chiclana)</field>
+			<field>AlRumbo Fest (Chipiona)</field>
+			<field>Bereber (Jerez)</field>
+			<field>Villamarta Theater (Jerez)</field>
+			<field>Recinto ferial (Medina)</field>
+			<field>Plaza de Toros (Sanlúcar)</field>
+			<field>La Cartuja (Sevilla)</field>
+		</where>
+	</task>
+	<task>
+		<name>Ausflug?</name>
+		<limit>2</limit>
+		<what>
+			<field>die Carreras de caballos sehen</field>
+			<field>den Corpus Christi sehen</field>
+			<field>die Cruces de Mayo sehen</field>
+			<field>den Entierro de la caballa sehen</field>
+			<field>zur Erizá gehen</field>
+			<field>zur Feria gehen</field>
+			<field>zur Feria del atún gehen</field>
+			<field>zur Fiesta del Garbanzo gehen</field>
+			<field>zur Fiesta de los Bandoleros gehen</field>
+			<field>zum Karneval gehen</field>
+			<field>zur Romería gehen</field>
+			<field>zur Noche de las velas gehen</field>
+			<field>zur Ostioná gehen</field>
+			<field>zur Pestiñá gehen</field>
+			<field>die Ruta del mosto machen</field>
+			<field>zur Zambomba gehen</field>
+		</what>
+		<where>
+			<field>Barbate</field>
+			<field>Benalup</field>
+			<field>Cádiz</field>
+			<field>Chiclana</field>
+			<field>Conil</field>
+			<field>Córdoba</field>
+			<field>El Puerto</field>
+			<field>Grazalema</field>
+			<field>Huelva</field>
+			<field>Jerez</field>
+			<field>Madrid</field>
+			<field>Málaga</field>
+			<field>Medina</field>
+			<field>Puerto Real</field>
+			<field>San Fernando</field>
+			<field>Sanlúcar</field>
+			<field>Sevilla</field>
+			<field>Trebujena</field>
+			<field>Vejer</field>
+			<field>Zahara</field>
+		</where>
+	</task>
+	<task>
+		<name>Café?</name>
+		<limit>2</limit>
+		<what>
+			 <field>die Zeitung lesen</field>
+			 <field>E Mails schreiben</field>
+			 <field>Erasmusstudenten treffen</field>
+			 <field>Freunde treffen</field>
+			 <field>für die Uni lernen</field>
+			 <field>im Internet chatten</field>
+			 <field>Kaffee trinken</field>
+			 <field>Kuchen essen</field>
+			 <field>quatschen</field>
+			 <field>Tee trinken</field>
+			 <field>über die Frauen quatschen</field>
+			 <field>über die Männer quatschen</field>
+			 <field>Karten spielen</field>
+			 <field>über die Uni tratschen</field>
+		</what>
+		<where>
+			<field>Atlántida (Cádiz)</field>
+			<field>Bar Cádiz (Medina)</field>
+			<field>Bar Ortega (Medina)</field>
+			<field>Don Pan (San Fernando)</field>
+			<field>El Mirador (Conil)</field>
+			<field>El Voy Voy (Arcos)</field>
+			<field>La Bombonera (Vejer)</field>
+			<field>La vaca atada (Cádiz)</field>
+			<field>Rosa Amarilla (Barbate)</field>
+			<field>San Antonio (Conil)</field>
+			<field>Sobrina de las Trejas (Medina)</field>
+			<field>Top Coffee (Cádiz)</field>
+		</where>
+	</task>
+	<task>
+		<name>Kneipe?</name>
+		<limit>2</limit>
+		<what>
+			<field>Bier trinken</field>
+			<field>Billard spielen</field>
+			<field>Karaoke singen</field>
+			<field>mit Erasmusstudenten flirten</field>
+			<field>Musik hören</field>
+			<field>quatschen</field>
+			<field>relaxen</field>
+			<field>tanzen</field>
+			<field>tapas essen</field>
+			<field>Tischfußball spielen</field>
+			<field>Whisky trinken</field>
+		</what>
+		<where>
+			<field>Almenara (San Fernando)</field>
+			<field>Aloha (Vejer)</field>
+			<field>Bulevar (Chipiona)</field>
+			<field>Chori (Benalup)</field>
+			<field>Cien Montaditos (Cádiz)</field>
+			<field>Copacabana (Puerto Real)</field>
+			<field>Dardo (Rota)</field>
+			<field>El azul (Barbate)</field>
+			<field>El califa (Vejer)</field>
+			<field>El Nahoo (Cádiz)</field>
+			<field>El Woodstock (Cádiz)</field>
+			<field>El 22 (Chiclana)</field>
+			<field>Foster Hollywood (Cádiz)</field>
+			<field>Gotham (Arcos)</field>
+			<field>Latinos (Grazalema)</field>
+			<field>La Bodeguita (San Fernando)</field>
+			<field>La Comedia (Jerez)</field>
+			<field>La Galería (Barbate)</field>
+			<field>La gorda te da de comer (Cádiz)</field>
+			<field>La isleta (Cádiz)</field>
+			<field>La Koutoubia (Zahara)</field>
+			<field>La Mandrágora (Sanlúcar)</field>
+			<field>La mano de Buda (Algeciras)</field>
+			<field>La Reja (San Fernando)</field>
+			<field>La Terraza (Zahara)</field>
+			<field>Pub Irlandés (Cádiz)</field>
+			<field>Pub CoCu (San Fernando)</field>
+			<field>Pub D2 (San Fernando)</field>
+			<field>Pub Irlandés (San Fernando)</field>
+			<field>Q’ arte (Arcos)</field>
+			<field>Sala Aqua (Conil de la Frontera)</field>
+			<field>Soho (Chiclana)</field>
+		</where>
+	</task>
+	<task>
+		<name>Park?</name>
+		<limit>2</limit>
+		<what>
+			<field>ein Buch lesen</field>
+			<field>ein Picknick machen</field>
+			<field>eine Zigarette rauchen</field>
+			<field>einen Botellón machen</field>
+			<field>einen Joint rauchen</field>
+			<field>einen Kaffee trinken</field>
+			<field>Enten füttern</field>
+			<field>Fotos machen</field>
+			<field>Fußball spielen</field>
+			<field>Gitarre spielen</field>
+			<field>Joggen</field>
+			<field>lernen</field>
+			<field>mit dem Fahrrad fahren</field>
+			<field>quatschen</field>
+			<field>relaxen</field>
+			<field>Rollschuh laufen</field>
+			<field>Selfies machen</field>
+			<field>spazieren gehen</field>
+			<field>Tauben füttern</field>
+			<field>Videos machen</field>
+			<field>Volleyball spielen</field>
+		</what>
+		<where>
+			<field>Almirante Laulhé Park (San Fernando)</field>
+			<field>Astilleros Park (Cádiz)</field>
+			<field>Barrero Park (San Fernando)</field>
+			<field>Calderón Park (El Puerto)</field>
+			<field>Caminillo Park (Medina)</field>
+			<field>El Faro Park (Barbate)</field>
+			<field>El Mayeto Park (Rota)</field>
+			<field>El Palomar de la Breña (Barbate)</field>
+			<field>Genovés Park (Cádiz)</field>
+			<field>La Verbena (Arcos)</field>
+			<field>Las Canteras (Puerto Real)</field>
+			<field>Los Alcornocales Park (Arcos)</field>
+			<field>Oeste Park (San Fernando)</field>
+			<field>Parque de los Remedios (Vejer)</field>
+			<field>Retiro Park (Jerez)</field>
+			<field>Santa Ana Park (Chiclana)</field>
+			<field>Varela Park (Cádiz)</field>
+			<field>William Park (Jerez)</field>
+		</where>
+	</task>
+	<task>
+		<name>Individuelle Aktivitäten</name>
+		<limit>1</limit>
+		<what>
+			<field>backen</field>
+			<field>die Pflanzen gießen</field>
+			<field>einen Film gucken</field>
+			<field>E Mails schreiben</field>
+			<field>fernsehen</field>
+			<field>für die Uni lernen</field>
+			<field>Gitarre spielen</field>
+			<field>im Internet chatten</field>
+			<field>Klavier spielen</field>
+			<field>kochen</field>
+			<field>lesen</field>
+			<field>malen</field>
+			<field>mit der Katze spielen</field>
+			<field>Musik hören</field>
+			<field>relaxen</field>
+			<field>schlafen</field>
+			<field>schwimmen gehen</field>
+			<field>sonnen</field>
+			<field>stricken</field>
+			<field>telefonieren</field>
+			<field>Videospiele spielen</field>
+		</what>
+		<where>
+			<field>am Strand</field>
+			<field>auf dem Balkon</field>
+			<field>auf der Terrasse</field>
+			<field>im Bett</field>
+			<field>im Garten</field>
+			<field>im Hof</field>
+			<field>im Meer</field>
+			<field>im Park</field>
+			<field>im Schwimmbad</field>
+			<field>in der Bibliothek</field>
+		</where>
+	</task>
+</tasks>
