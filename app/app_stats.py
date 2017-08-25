@@ -366,6 +366,8 @@ for adv in adverbios_temporales:
 
 ampliacion_diccionario = sorted(set(ampliacion_diccionario))
 
+""" ↓ EXTRACCIÓN DE ESTADÍSTICAS ↓ """
+
 # Extracción de nombres alumnos para estadísticas por alumnos y por pareja.
 alumnos = []
 parejas = []
@@ -387,115 +389,177 @@ for log in logs:
 stats_per_student = {}
 stats_per_pair = {}
 
-# Este vector se utiliza para almacenar las estadisticas por estudiante y por pareja.
+# Se utiliza un array para almacenar las estadisticas por estudiante y por pareja.
 # Para ello, se le asigna dicho vector a cada entrada del diccionario, respondiendo a los siguientes indices:
 # 0: Mensajes
-# 1: Turnos en unidades
-# 2: Frases
-# ...
+# 1: Frases
+# 2: Turnos (en unidades)
+# 3: Palabras
+# 4: Palabras en diccionario
+# 5: Palabras fuera diccionario
+# 6: Palabras distintas
+# 7: Palabras en diccionario distintas
+# 8: Palabras fuera diccionario distintas
 
 for alumno in alumnos:
-    stats_per_student[alumno] = [["Mensajes"], ["Turnos (unidades)"], ["Frases"], ]
+    stats_per_student[alumno] = [["Mensajes", ], ["Frases", ], ["Turnos (unidades)", 0],
+                                 ["Palabras", ], ["Palabras en diccionario", ], ["Palabras fuera diccionario", ],
+                                 ["Palabras distintas", ], ["Palabras en diccionario distintas", ], ["Palabras fuera diccionario distintas", ], ]
 
 for pareja in parejas:
-    stats_per_pair[pareja] = [["Mensajes"], ["Turnos (unidades)"], ["Frases"], ]
+    stats_per_pair[pareja] = [["Mensajes", ], ["Frases", ], ["Turnos (unidades)", 0],
+                              ["Palabras", ], ["Palabras en diccionario", ], ["Palabras fuera diccionario", ],
+                              ["Palabras distintas", ], ["Palabras en diccionario distintas", ], ["Palabras fuera diccionario distintas", ], ]
 
-""" Estadísticas generales """
-# Obtención de mensajes, turnos y frases
+# Obtención de mensajes, frases y turnos
 mensajes = []
 frases = []
+pareja_actual = ''
 linea_anterior = '-'
 numero_turnos = 0
 tiempo_turnos = []
-i = 0
-
-for log in logs:
-    for line in log:
-        if line.startswith(":", 2, 3):
-            linea_dividida = line.split()
-            linea_anterior_dividida = linea_anterior.split()
-
-            mensaje = ' '.join(linea_dividida[4:])
-            mensajes.append(mensaje)
-            nombre = (linea_dividida[2] + " " + linea_dividida[3]).rstrip(":")
-
-            stats_per_student[nombre][0].append(mensaje)
-
-            if '-' in linea_anterior:
-                numero_turnos += 1
-            else:
-                nombre_alumno = (linea_dividida[2] + " " + linea_dividida[3]).rstrip(":")
-                nombre_alumno_anterior = (linea_anterior_dividida[2] + " " + linea_anterior_dividida[3]).rstrip(":")
-                if not nombre_alumno == nombre_alumno_anterior:
-                    numero_turnos += 1
-            linea_anterior = line
-
-for mensaje in stats_per_student["Reyes Rosales"][0]:
-    print mensaje
-
-for mensaje in mensajes:
-    if "!" in mensaje:
-        if mensaje.index("!") != len(mensaje) - 1:
-            frase = mensaje.split("! ")
-            for f in frase:
-                if frase.index(f) != len(frase)-1:
-                    frases.append(f+"!")
-                else:
-                    frases.append(f)
-        else:
-            frases.append(mensaje)
-
-    if "?" in mensaje:
-        if mensaje.index("?") != len(mensaje) - 1:
-            frase = mensaje.split("? ")
-            for f in frase:
-                if frase.index(f) != len(frase)-1:
-                    frases.append(f+"?")
-                else:
-                    frases.append(f)
-        elif "!" not in mensaje:
-            frases.append(mensaje)
-
-    if "." in mensaje and "..." not in mensaje:
-        if mensaje.index(".") != len(mensaje) - 1:
-            frase = mensaje.split(". ")
-            for f in frase:
-                if frase.index(f) != len(frase)-1:
-                    frases.append(f+".")
-                else:
-                    frases.append(f)
-        elif "!" not in mensaje and "?" not in mensaje:
-            frases.append(mensaje)
-
-    if "!" not in mensaje and "?" not in mensaje and "." not in mensaje:
-        frases.append(mensaje)
 
 # Palabras y corrección según diccionario
 palabras = []
 palabras_en_diccionario = []
 palabras_fuera_diccionario = []
+palabras_distintas = []
+palabras_en_diccionario_distintas = []
+palabras_fuera_diccionario_distintas = []
 
 caracteres_especiales = ["?", "!", ",", ".", "#", "*", "O.o", "(", ")"]
 d = enchant.Dict("de_DE")
 
-for mensaje in mensajes:
-    lista_palabras = mensaje.split()
-    for palabra in lista_palabras:
-        if palabra not in caracteres_especiales:
-            palabras.append(palabra)
+for log in logs:
+    for line in log:
+        if "------------ " in line and len(line.split()) > 5:
+            pareja_actual = line.split()[1] + " " + line.split()[2] + "-" + line.split()[4] + " " + line.split()[5]
+        elif line.startswith(":", 2, 3):
+            linea_dividida = line.split()
+            linea_anterior_dividida = linea_anterior.split()
+            nombre = (linea_dividida[2] + " " + linea_dividida[3]).rstrip(":")
 
-            if d.check(palabra) or palabra.lower() in ampliacion_diccionario or palabra.capitalize() in ampliacion_diccionario:
-                palabras_en_diccionario.append(palabra)
+            # Mensajes
+            mensaje = ' '.join(linea_dividida[4:])
+
+            mensajes.append(mensaje)
+            stats_per_student[nombre][0].append(mensaje)
+            stats_per_pair[pareja_actual][0].append(mensaje)
+
+            # Frases
+            if "!" in mensaje:
+                if mensaje.index("!") != len(mensaje) - 1:
+                    frase = mensaje.split("! ")
+                    for f in frase:
+                        if frase.index(f) != len(frase) - 1:
+                            frases.append(f + "!")
+                            stats_per_student[nombre][1].append(f + "!")
+                            stats_per_pair[pareja_actual][1].append(f + "!")
+                        else:
+                            frases.append(f)
+                            stats_per_student[nombre][1].append(f)
+                            stats_per_pair[pareja_actual][1].append(f)
+                else:
+                    frases.append(mensaje)
+                    stats_per_student[nombre][1].append(mensaje)
+                    stats_per_pair[pareja_actual][1].append(mensaje)
+
+            if "?" in mensaje:
+                if mensaje.index("?") != len(mensaje) - 1:
+                    frase = mensaje.split("? ")
+                    for f in frase:
+                        if frase.index(f) != len(frase) - 1:
+                            frases.append(f + "?")
+                            stats_per_student[nombre][1].append(f + "?")
+                            stats_per_pair[pareja_actual][1].append(f + "?")
+                        else:
+                            frases.append(f)
+                            stats_per_student[nombre][1].append(f)
+                            stats_per_pair[pareja_actual][1].append(f)
+                elif "!" not in mensaje:
+                    frases.append(mensaje)
+                    stats_per_student[nombre][1].append(mensaje)
+                    stats_per_pair[pareja_actual][1].append(mensaje)
+
+            if "." in mensaje and "..." not in mensaje:
+                if mensaje.index(".") != len(mensaje) - 1:
+                    frase = mensaje.split(". ")
+                    for f in frase:
+                        if frase.index(f) != len(frase) - 1:
+                            frases.append(f + ".")
+                            stats_per_student[nombre][1].append(f + ".")
+                            stats_per_pair[pareja_actual][1].append(f + ".")
+                        else:
+                            frases.append(f)
+                            stats_per_student[nombre][1].append(f)
+                            stats_per_pair[pareja_actual][1].append(f)
+                elif "!" not in mensaje and "?" not in mensaje:
+                    frases.append(mensaje)
+                    stats_per_student[nombre][1].append(mensaje)
+                    stats_per_pair[pareja_actual][1].append(mensaje)
+
+            if "!" not in mensaje and "?" not in mensaje and "." not in mensaje:
+                frases.append(mensaje)
+                stats_per_student[nombre][1].append(mensaje)
+                stats_per_pair[pareja_actual][1].append(mensaje)
+
+            # Turnos
+            if '-' in linea_anterior:
+                numero_turnos += 1
+                stats_per_student[nombre][2][1] += 1
+                stats_per_pair[pareja_actual][2][1] += 1
             else:
-                palabras_fuera_diccionario.append(palabra)
+                nombre_alumno = (linea_dividida[2] + " " + linea_dividida[3]).rstrip(":")
+                nombre_alumno_anterior = (linea_anterior_dividida[2] + " " + linea_anterior_dividida[3]).rstrip(":")
+                if not nombre_alumno == nombre_alumno_anterior:
+                    numero_turnos += 1
+                    stats_per_student[nombre_alumno][2][1] += 1
+                    stats_per_pair[pareja_actual][2][1] += 1
+            linea_anterior = line
 
+            # Diccionario
+            lista_palabras = mensaje.split()
+            for palabra in lista_palabras:
+                if palabra not in caracteres_especiales:
+                    # Palabras
+                    palabras.append(palabra)
+                    if palabra not in palabras_distintas:
+                        palabras_distintas.append(palabra)
 
-palabras = sorted(palabras)
-palabras_distintas = list(set(palabras))
-palabras_en_diccionario = sorted(palabras_en_diccionario)
-palabras_fuera_diccionario = sorted(palabras_fuera_diccionario)
-palabras_en_diccionario_distintas = sorted(set(palabras_en_diccionario))
-palabras_fuera_diccionario_distintas = sorted(set(palabras_fuera_diccionario))
+                    stats_per_student[nombre][3].append(palabra)
+                    if palabra not in stats_per_student[nombre][6]:
+                        stats_per_student[nombre][6].append(palabra)
+
+                    stats_per_pair[pareja_actual][3].append(palabra)
+                    if palabra not in stats_per_pair[pareja_actual][6]:
+                        stats_per_pair[pareja_actual][6].append(palabra)
+
+                    # Palabras correctas/incorrectas
+                    if d.check(palabra) or palabra.lower() in ampliacion_diccionario or palabra.capitalize() in ampliacion_diccionario:
+                        palabras_en_diccionario.append(palabra)
+                        if palabra not in palabras_en_diccionario_distintas:
+                            palabras_en_diccionario_distintas.append(palabra)
+
+                        stats_per_student[nombre][4].append(palabra)
+                        if palabra not in stats_per_student[nombre][7]:
+                            stats_per_student[nombre][7].append(palabra)
+
+                        stats_per_pair[pareja_actual][4].append(palabra)
+                        if palabra not in stats_per_pair[pareja_actual][7]:
+                            stats_per_pair[pareja_actual][7].append(palabra)
+                    else:
+                        palabras_fuera_diccionario.append(palabra)
+                        if palabra not in palabras_fuera_diccionario_distintas:
+                            palabras_fuera_diccionario_distintas.append(palabra)
+
+                        stats_per_student[nombre][5].append(palabra)
+                        if palabra not in stats_per_student[nombre][8]:
+                            stats_per_student[nombre][8].append(palabra)
+
+                        stats_per_pair[pareja_actual][5].append(palabra)
+                        if palabra not in stats_per_pair[pareja_actual][8]:
+                            stats_per_pair[pareja_actual][8].append(palabra)
+
 
 # print len(mensajes)
 # print len(frases)
