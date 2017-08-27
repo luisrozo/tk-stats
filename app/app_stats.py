@@ -400,20 +400,169 @@ stats_per_pair = {}
 # 6: Palabras distintas
 # 7: Palabras en diccionario distintas
 # 8: Palabras fuera diccionario distintas
+# 9: Palabras reservadas total
+# 10: Palabras reservadas - Categoría "Pronombres interrogativos"
+# 11: Palabras reservadas - Categoría "Adjetivos"
+# 12: Palabras reservadas - Categoría "Saludos y despedidas"
+# 13: Palabras reservadas - Categoría "Frases hechas"
+# 14: Palabras reservadas - Categoría "Expresiones de afirmación"
+# 15: Palabras reservadas - Categoría "Expresiones de negación/duda"
+# 16: Palabras reservadas - Categoría "Lugares"
+# 17: Palabras reservadas - Categoría "Días de la semana"
+# 18: Palabras reservadas - Categoría "Adverbios temporales"
+# 19: Palabras reservadas - Categoría "Horas"
+# 20: Palabras reservadas - Categoría "Preposición 'mit'"
+# 21: Palabras reservadas - Categoría "'Mit' + pronombres personales"
+# 22: Palabras reservadas distintas
+# 23: Palabras reservadas distintas - Categoría "Pronombres interrogativos"
+# 24: Palabras reservadas distintas - Categoría "Adjetivos"
+# 25: Palabras reservadas distintas - Categoría "Saludos y despedidas"
+# 26: Palabras reservadas distintas - Categoría "Frases hechas"
+# 27: Palabras reservadas distintas - Categoría "Expresiones de afirmación"
+# 28: Palabras reservadas distintas - Categoría "Expresiones de negación/duda"
+# 29: Palabras reservadas distintas - Categoría "Lugares"
+# 30: Palabras reservadas distintas - Categoría "Días de la semana"
+# 31: Palabras reservadas distintas - Categoría "Adverbios temporales"
+# 32: Palabras reservadas distintas - Categoría "Horas"
+# 33: Palabras reservadas distintas - Categoría "Preposición 'mit'"
+# 34: Palabras reservadas distintas - Categoría "'Mit' + pronombres personales"
+# 35: Frases de una sola palabra
+# 36: Frases interrogativas
+# 37: Frases exclamativas
+# 38: Estructuras gramaticales precisas total
+# 39: Estructuras gramaticales precisas - Categoría "Preguntas con Complemento de Lugar"
+# 40: Estructuras gramaticales precisas - Categoría "Preguntas con Complemento de Tiempo"
+# 41: Estructuras gramaticales precisas - Categoría "Preguntas simples"
+# 42: Estructuras gramaticales precisas - Categoría "Enunciados con Complemento Directo"
+# 43: Estructuras gramaticales precisas distintas
+# 44: Estructuras gramaticales precisas distintas - Categoría "Preguntas con Complemento de Lugar"
+# 45: Estructuras gramaticales precisas distintas - Categoría "Preguntas con Complemento de Tiempo"
+# 46: Estructuras gramaticales precisas distintas - Categoría "Preguntas simples"
+# 47: Estructuras gramaticales precisas distintas - Categoría "Enunciados con Complemento Directo"
+# 48: Estructuras gramaticales similares total
+# 49: Estructuras gramaticales similares - Categoría "Preguntas con Complemento de Lugar"
+# 50: Estructuras gramaticales similares - Categoría "Preguntas con Complemento de Tiempo"
+# 51: Estructuras gramaticales similares - Categoría "Preguntas simples"
+# 52: Estructuras gramaticales similares - Categoría "Enunciados con Complemento Directo"
+# 53: Estructuras gramaticales similares distintas
+# 54: Estructuras gramaticales similares distintas - Categoría "Preguntas con Complemento de Lugar"
+# 55: Estructuras gramaticales similares distintas - Categoría "Preguntas con Complemento de Tiempo"
+# 56: Estructuras gramaticales similares distintas - Categoría "Preguntas simples"
+# 57: Estructuras gramaticales similares distintas - Categoría "Enunciados con Complemento Directo"
+
 
 for alumno in alumnos:
     stats_per_student[alumno] = [["Mensajes", ], ["Frases", ], ["Turnos (unidades)", 0],
                                  ["Palabras", ], ["Palabras en diccionario", ], ["Palabras fuera diccionario", ],
-                                 ["Palabras distintas", ], ["Palabras en diccionario distintas", ], ["Palabras fuera diccionario distintas", ], ]
+                                 ["Palabras distintas", ], ["Palabras en diccionario distintas", ], ["Palabras fuera diccionario distintas", ],
+                                 ["Palabras reservadas total", ],
+                                 ["Palabras reservadas - Categoría \"Pronombres interrogativos\"", ],
+                                 ["Palabras reservadas - Categoría \"Adjetivos\"", ],
+                                 ["Palabras reservadas - Categoría \"Saludos y despedidas\"", ],
+                                 ["Palabras reservadas - Categoría \"Frases hechas\"", ],
+                                 ["Palabras reservadas - Categoría \"Expresiones de afirmación\"", ],
+                                 ["Palabras reservadas - Categoría \"Expresiones de negación/duda\"", ],
+                                 ["Palabras reservadas - Categoría \"Lugares\"", ],
+                                 ["Palabras reservadas - Categoría \"Días de la semana\"", ],
+                                 ["Palabras reservadas - Categoría \"Adverbios temporales\"", ],
+                                 ["Palabras reservadas - Categoría \"Horas\"", ],
+                                 ["Palabras reservadas - Categoría \"Preposición 'mit'\"", ],
+                                 ["Palabras reservadas - Categoría \"'Mit' + pronombres personales\"", ],
+                                 ["Palabras reservadas distintas", ],
+                                 ["Palabras reservadas distintas - Categoría \"Pronombres interrogativos\"", ],
+                                 ["Palabras reservadas distintas - Categoría \"Adjetivos\"", ],
+                                 ["Palabras reservadas distintas - Categoría \"Saludos y despedidas\"", ],
+                                 ["Palabras reservadas distintas - Categoría \"Frases hechas\"", ],
+                                 ["Palabras reservadas distintas - Categoría \"Expresiones de afirmación\"", ],
+                                 ["Palabras reservadas distintas - Categoría \"Expresiones de negación/duda\"", ],
+                                 ["Palabras reservadas distintas - Categoría \"Lugares\"", ],
+                                 ["Palabras reservadas distintas - Categoría \"Días de la semana\"", ],
+                                 ["Palabras reservadas distintas - Categoría \"Adverbios temporales\"", ],
+                                 ["Palabras reservadas distintas - Categoría \"Horas\"", ],
+                                 ["Palabras reservadas distintas - Categoría \"Preposición 'mit'\"", ],
+                                 ["Palabras reservadas distintas - Categoría \"'Mit' + pronombres personales\"", ],
+                                 ["Frases de una sola palabra", ], ["Frases interrogativas", ], ["Frases exclamativas", ],
+                                 ["Estructuras gramaticales precisas total", ],
+                                 ["Estructuras gramaticales precisas - Categoría \"Preguntas con Complemento de Lugar\"", ],
+                                 ["Estructuras gramaticales precisas - Categoría \"Preguntas con Complemento de Tiempo\"", ],
+                                 ["Estructuras gramaticales precisas - Categoría \"Preguntas simples\"", ],
+                                 ["Estructuras gramaticales precisas - Categoría \"Enunciados con Complemento Directo\"", ],
+                                 ["Estructuras gramaticales precisas distintas", ],
+                                 ["Estructuras gramaticales precisas distintas - Categoría \"Preguntas con Complemento de Lugar\"", ],
+                                 ["Estructuras gramaticales precisas distintas - Categoría \"Preguntas con Complemento de Tiempo\"", ],
+                                 ["Estructuras gramaticales precisas distintas - Categoría \"Preguntas simples\"", ],
+                                 ["Estructuras gramaticales precisas distintas - Categoría \"Enunciados con Complemento Directo\"", ],
+                                 ["Estructuras gramaticales similares total", ],
+                                 ["Estructuras gramaticales similares - Categoría \"Preguntas con Complemento de Lugar\"", ],
+                                 ["Estructuras gramaticales similares - Categoría \"Preguntas con Complemento de Tiempo\"", ],
+                                 ["Estructuras gramaticales similares - Categoría \"Preguntas simples\"", ],
+                                 ["Estructuras gramaticales similares - Categoría \"Enunciados con Complemento Directo\"", ],
+                                 ["Estructuras gramaticales similares distintas", ],
+                                 ["Estructuras gramaticales similares distintas - Categoría \"Preguntas con Complemento de Lugar\"", ],
+                                 ["Estructuras gramaticales similares distintas - Categoría \"Preguntas con Complemento de Tiempo\"", ],
+                                 ["Estructuras gramaticales similares distintas - Categoría \"Preguntas simples\"", ],
+                                 ["Estructuras gramaticales similares distintas - Categoría \"Enunciados con Complemento Directo\"", ],
+                                 ]
 
 for pareja in parejas:
     stats_per_pair[pareja] = [["Mensajes", ], ["Frases", ], ["Turnos (unidades)", 0],
                               ["Palabras", ], ["Palabras en diccionario", ], ["Palabras fuera diccionario", ],
-                              ["Palabras distintas", ], ["Palabras en diccionario distintas", ], ["Palabras fuera diccionario distintas", ], ]
+                              ["Palabras distintas", ], ["Palabras en diccionario distintas", ], ["Palabras fuera diccionario distintas", ],
+                              ["Palabras reservadas total", ],
+                              ["Palabras reservadas - Categoría \"Pronombres interrogativos\"", ],
+                              ["Palabras reservadas - Categoría \"Adjetivos\"", ],
+                              ["Palabras reservadas - Categoría \"Saludos y despedidas\"", ],
+                              ["Palabras reservadas - Categoría \"Frases hechas\"", ],
+                              ["Palabras reservadas - Categoría \"Expresiones de afirmación\"", ],
+                              ["Palabras reservadas - Categoría \"Expresiones de negación/duda\"", ],
+                              ["Palabras reservadas - Categoría \"Lugares\"", ],
+                              ["Palabras reservadas - Categoría \"Días de la semana\"", ],
+                              ["Palabras reservadas - Categoría \"Adverbios temporales\"", ],
+                              ["Palabras reservadas - Categoría \"Horas\"", ],
+                              ["Palabras reservadas - Categoría \"Preposición 'mit'\"", ],
+                              ["Palabras reservadas - Categoría \"'Mit' + pronombres personales\"", ],
+                              ["Palabras reservadas distintas", ],
+                              ["Palabras reservadas distintas - Categoría \"Pronombres interrogativos\"", ],
+                              ["Palabras reservadas distintas - Categoría \"Adjetivos\"", ],
+                              ["Palabras reservadas distintas - Categoría \"Saludos y despedidas\"", ],
+                              ["Palabras reservadas distintas - Categoría \"Frases hechas\"", ],
+                              ["Palabras reservadas distintas - Categoría \"Expresiones de afirmación\"", ],
+                              ["Palabras reservadas distintas - Categoría \"Expresiones de negación/duda\"", ],
+                              ["Palabras reservadas distintas - Categoría \"Lugares\"", ],
+                              ["Palabras reservadas distintas - Categoría \"Días de la semana\"", ],
+                              ["Palabras reservadas distintas - Categoría \"Adverbios temporales\"", ],
+                              ["Palabras reservadas distintas - Categoría \"Horas\"", ],
+                              ["Palabras reservadas distintas - Categoría \"Preposición 'mit'\"", ],
+                              ["Palabras reservadas distintas - Categoría \"'Mit' + pronombres personales\"", ],
+                              ["Frases de una sola palabra", ], ["Frases interrogativas", ], ["Frases exclamativas", ],
+                              ["Estructuras gramaticales precisas total", ],
+                              ["Estructuras gramaticales precisas - Categoría \"Preguntas con Complemento de Lugar\"", ],
+                              ["Estructuras gramaticales precisas - Categoría \"Preguntas con Complemento de Tiempo\"", ],
+                              ["Estructuras gramaticales precisas - Categoría \"Preguntas simples\"", ],
+                              ["Estructuras gramaticales precisas - Categoría \"Enunciados con Complemento Directo\"", ],
+                              ["Estructuras gramaticales precisas distintas", ],
+                              ["Estructuras gramaticales precisas distintas - Categoría \"Preguntas con Complemento de Lugar\"", ],
+                              ["Estructuras gramaticales precisas distintas - Categoría \"Preguntas con Complemento de Tiempo\"", ],
+                              ["Estructuras gramaticales precisas distintas - Categoría \"Preguntas simples\"", ],
+                              ["Estructuras gramaticales precisas distintas - Categoría \"Enunciados con Complemento Directo\"", ],
+                              ["Estructuras gramaticales similares total", ],
+                              ["Estructuras gramaticales similares - Categoría \"Preguntas con Complemento de Lugar\"", ],
+                              ["Estructuras gramaticales similares - Categoría \"Preguntas con Complemento de Tiempo\"", ],
+                              ["Estructuras gramaticales similares - Categoría \"Preguntas simples\"", ],
+                              ["Estructuras gramaticales similares - Categoría \"Enunciados con Complemento Directo\"", ],
+                              ["Estructuras gramaticales similares distintas", ],
+                              ["Estructuras gramaticales similares distintas - Categoría \"Preguntas con Complemento de Lugar\"", ],
+                              ["Estructuras gramaticales similares distintas - Categoría \"Preguntas con Complemento de Tiempo\"", ],
+                              ["Estructuras gramaticales similares distintas - Categoría \"Preguntas simples\"", ],
+                              ["Estructuras gramaticales similares distintas - Categoría \"Enunciados con Complemento Directo\"", ],
+                              ]
 
 # Obtención de mensajes, frases y turnos
 mensajes = []
 frases = []
+frases_una_palabra = []
+frases_interrogativas = []
+frases_exclamativas = []
 pareja_actual = ''
 linea_anterior = '-'
 numero_turnos = 0
@@ -426,9 +575,102 @@ palabras_fuera_diccionario = []
 palabras_distintas = []
 palabras_en_diccionario_distintas = []
 palabras_fuera_diccionario_distintas = []
-
 caracteres_especiales = ["?", "!", ",", ".", "#", "*", "O.o", "(", ")"]
 d = enchant.Dict("de_DE")
+
+# Palabras reservadas
+palabras_reservadas_total = []
+palabras_reservadas_catPronombresInterrogativos = []
+palabras_reservadas_catAdjetivos = []
+palabras_reservadas_catSaludosDespedidas = []
+palabras_reservadas_catFrasesHechas = []
+palabras_reservadas_catExpresionesAfirmacion = []
+palabras_reservadas_catExpresionesNegacionDuda = []
+palabras_reservadas_catLugares = []
+palabras_reservadas_catDiasSemana = []
+palabras_reservadas_catAdverbiosTemporales = []
+palabras_reservadas_catHoras = []
+palabras_reservadas_catMit = []
+palabras_reservadas_catPronombresPersonales = []
+palabras_reservadas_total_por_categoria = [palabras_reservadas_catPronombresInterrogativos,
+                                           palabras_reservadas_catAdjetivos,
+                                           palabras_reservadas_catSaludosDespedidas,
+                                           palabras_reservadas_catFrasesHechas,
+                                           palabras_reservadas_catExpresionesAfirmacion,
+                                           palabras_reservadas_catExpresionesNegacionDuda,
+                                           palabras_reservadas_catLugares,
+                                           palabras_reservadas_catDiasSemana,
+                                           palabras_reservadas_catAdverbiosTemporales,
+                                           palabras_reservadas_catHoras,
+                                           palabras_reservadas_catMit,
+                                           palabras_reservadas_catPronombresPersonales]
+
+palabras_reservadas_distintas = []
+palabras_reservadas_catPronombresInterrogativos_distintas = []
+palabras_reservadas_catAdjetivos_distintas = []
+palabras_reservadas_catSaludosDespedidas_distintas = []
+palabras_reservadas_catFrasesHechas_distintas = []
+palabras_reservadas_catExpresionesAfirmacion_distintas = []
+palabras_reservadas_catExpresionesNegacionDuda_distintas = []
+palabras_reservadas_catLugares_distintas = []
+palabras_reservadas_catDiasSemana_distintas = []
+palabras_reservadas_catAdverbiosTemporales_distintas = []
+palabras_reservadas_catHoras_distintas = []
+palabras_reservadas_catMit_distintas = []
+palabras_reservadas_catPronombresPersonales_distintas = []
+palabras_reservadas_distintas_por_categoria = [palabras_reservadas_catPronombresInterrogativos_distintas,
+                                               palabras_reservadas_catAdjetivos_distintas,
+                                               palabras_reservadas_catSaludosDespedidas_distintas,
+                                               palabras_reservadas_catFrasesHechas_distintas,
+                                               palabras_reservadas_catExpresionesAfirmacion_distintas,
+                                               palabras_reservadas_catExpresionesNegacionDuda_distintas,
+                                               palabras_reservadas_catLugares_distintas,
+                                               palabras_reservadas_catDiasSemana_distintas,
+                                               palabras_reservadas_catAdverbiosTemporales_distintas,
+                                               palabras_reservadas_catHoras_distintas,
+                                               palabras_reservadas_catMit_distintas,
+                                               palabras_reservadas_catPronombresPersonales_distintas]
+
+# Estructuras gramaticales
+estructuras_gramaticales_precisas_total = []
+estructuras_gramaticales_precisas_catPreguntasCLugar = []
+estructuras_gramaticales_precisas_catPreguntasCTiempo = []
+estructuras_gramaticales_precisas_catPreguntasSimples = []
+estructuras_gramaticales_precisas_catEnunciadosCDirecto = []
+estructuras_gramaticales_precisas_total_por_categoria = [estructuras_gramaticales_precisas_catPreguntasCLugar,
+                                                         estructuras_gramaticales_precisas_catPreguntasCTiempo,
+                                                         estructuras_gramaticales_precisas_catPreguntasSimples,
+                                                         estructuras_gramaticales_precisas_catEnunciadosCDirecto]
+
+estructuras_gramaticales_precisas_distintas = []
+estructuras_gramaticales_precisas_catPreguntasCLugar_distintas = []
+estructuras_gramaticales_precisas_catPreguntasCTiempo_distintas = []
+estructuras_gramaticales_precisas_catPreguntasSimples_distintas = []
+estructuras_gramaticales_precisas_catEnunciadosCDirecto_distintas = []
+estructuras_gramaticales_precisas_distintas_por_categoria = [estructuras_gramaticales_precisas_catPreguntasCLugar_distintas,
+                                                             estructuras_gramaticales_precisas_catPreguntasCTiempo_distintas,
+                                                             estructuras_gramaticales_precisas_catPreguntasSimples_distintas,
+                                                             estructuras_gramaticales_precisas_catEnunciadosCDirecto_distintas]
+
+estructuras_gramaticales_similares_total = []
+estructuras_gramaticales_similares_catPreguntasCLugar = []
+estructuras_gramaticales_similares_catPreguntasCTiempo = []
+estructuras_gramaticales_similares_catPreguntasSimples = []
+estructuras_gramaticales_similares_catEnunciadosCDirecto = []
+estructuras_gramaticales_similares_total_por_categoria = [estructuras_gramaticales_similares_catPreguntasCLugar,
+                                                         estructuras_gramaticales_similares_catPreguntasCTiempo,
+                                                         estructuras_gramaticales_similares_catPreguntasSimples,
+                                                         estructuras_gramaticales_similares_catEnunciadosCDirecto]
+
+estructuras_gramaticales_similares_distintas = []
+estructuras_gramaticales_similares_catPreguntasCLugar_distintas = []
+estructuras_gramaticales_similares_catPreguntasCTiempo_distintas = []
+estructuras_gramaticales_similares_catPreguntasSimples_distintas = []
+estructuras_gramaticales_similares_catEnunciadosCDirecto_distintas = []
+estructuras_gramaticales_similares_distintas_por_categoria = [estructuras_gramaticales_similares_catPreguntasCLugar_distintas,
+                                                             estructuras_gramaticales_similares_catPreguntasCTiempo_distintas,
+                                                             estructuras_gramaticales_similares_catPreguntasSimples_distintas,
+                                                             estructuras_gramaticales_similares_catEnunciadosCDirecto_distintas]
 
 for log in logs:
     for line in log:
@@ -447,6 +689,7 @@ for log in logs:
             stats_per_pair[pareja_actual][0].append(mensaje)
 
             # Frases
+            frases_del_mensaje = []
             if "!" in mensaje:
                 if mensaje.index("!") != len(mensaje) - 1:
                     frase = mensaje.split("! ")
@@ -455,14 +698,17 @@ for log in logs:
                             frases.append(f + "!")
                             stats_per_student[nombre][1].append(f + "!")
                             stats_per_pair[pareja_actual][1].append(f + "!")
+                            frases_del_mensaje.append(f + "!")
                         else:
                             frases.append(f)
                             stats_per_student[nombre][1].append(f)
                             stats_per_pair[pareja_actual][1].append(f)
+                            frases_del_mensaje.append(f)
                 else:
                     frases.append(mensaje)
                     stats_per_student[nombre][1].append(mensaje)
                     stats_per_pair[pareja_actual][1].append(mensaje)
+                    frases_del_mensaje.append(mensaje)
 
             if "?" in mensaje:
                 if mensaje.index("?") != len(mensaje) - 1:
@@ -472,14 +718,17 @@ for log in logs:
                             frases.append(f + "?")
                             stats_per_student[nombre][1].append(f + "?")
                             stats_per_pair[pareja_actual][1].append(f + "?")
+                            frases_del_mensaje.append(f + "?")
                         else:
                             frases.append(f)
                             stats_per_student[nombre][1].append(f)
                             stats_per_pair[pareja_actual][1].append(f)
+                            frases_del_mensaje.append(f)
                 elif "!" not in mensaje:
                     frases.append(mensaje)
                     stats_per_student[nombre][1].append(mensaje)
                     stats_per_pair[pareja_actual][1].append(mensaje)
+                    frases_del_mensaje.append(mensaje)
 
             if "." in mensaje and "..." not in mensaje:
                 if mensaje.index(".") != len(mensaje) - 1:
@@ -489,19 +738,39 @@ for log in logs:
                             frases.append(f + ".")
                             stats_per_student[nombre][1].append(f + ".")
                             stats_per_pair[pareja_actual][1].append(f + ".")
+                            frases_del_mensaje.append(f + ".")
                         else:
                             frases.append(f)
                             stats_per_student[nombre][1].append(f)
                             stats_per_pair[pareja_actual][1].append(f)
+                            frases_del_mensaje.append(f)
                 elif "!" not in mensaje and "?" not in mensaje:
                     frases.append(mensaje)
                     stats_per_student[nombre][1].append(mensaje)
                     stats_per_pair[pareja_actual][1].append(mensaje)
+                    frases_del_mensaje.append(mensaje)
 
             if "!" not in mensaje and "?" not in mensaje and "." not in mensaje:
                 frases.append(mensaje)
                 stats_per_student[nombre][1].append(mensaje)
                 stats_per_pair[pareja_actual][1].append(mensaje)
+                frases_del_mensaje.append(mensaje)
+
+            for frase in frases_del_mensaje:
+                if len(frase.split()) == 1 or (len(frase.split()) == 2 and ('?' in frase or '!' in frase)):
+                    frases_una_palabra.append(frase)
+                    stats_per_student[nombre][35].append(frase)
+                    stats_per_pair[pareja_actual][35].append(frase)
+
+                if '?' in frase:
+                    frases_interrogativas.append(frase)
+                    stats_per_student[nombre][36].append(frase)
+                    stats_per_pair[pareja_actual][36].append(frase)
+
+                if '!' in frase:
+                    frases_exclamativas.append(frase)
+                    stats_per_student[nombre][37].append(frase)
+                    stats_per_pair[pareja_actual][37].append(frase)
 
             # Turnos
             if '-' in linea_anterior:
@@ -560,185 +829,196 @@ for log in logs:
                         if palabra not in stats_per_pair[pareja_actual][8]:
                             stats_per_pair[pareja_actual][8].append(palabra)
 
+            # Palabras reservadas
+            """expresiones_en_mensaje = usaExpresionReservada(mensaje)
+            if len(expresiones_en_mensaje) >= 1:
+                for expresion in expresiones_en_mensaje:
+                    palabras_reservadas_total.append(expresion)
+                    if expresion not in palabras_reservadas_distintas:
+                        palabras_reservadas_distintas.append(expresion)
 
-# print len(mensajes)
-# print len(frases)
-# print len(palabras)
-# print len(palabras_en_diccionario)
-# print len(palabras_fuera_diccionario)
-# print len(palabras_distintas)
-# print len(palabras_en_diccionario_distintas)
-# print len(palabras_fuera_diccionario_distintas)
+                    stats_per_student[nombre][9].append(expresion)
+                    if expresion not in stats_per_student[nombre][22]:
+                        stats_per_student[nombre][22].append(expresion)
 
-# Palabras o expresiones reservadas
-'''palabras_reservadas_total = []
-palabras_reservadas_distintas = []
-palabras_reservadas_catPronombresInterrogativos = []
-palabras_reservadas_catAdjetivos = []
-palabras_reservadas_catSaludosDespedidas = []
-palabras_reservadas_catFrasesHechas = []
-palabras_reservadas_catExpresionesAfirmacion = []
-palabras_reservadas_catExpresionesNegacionDuda = []
-palabras_reservadas_catLugares = []
-palabras_reservadas_catDiasSemana = []
-palabras_reservadas_catAdverbiosTemporales = []
-palabras_reservadas_catHoras = []
-palabras_reservadas_catMit = []
-palabras_reservadas_catPronombresPersonales = []
-palabras_reservadas_catPronombresInterrogativos_distintas = []
-palabras_reservadas_catAdjetivos_distintas = []
-palabras_reservadas_catSaludosDespedidas_distintas = []
-palabras_reservadas_catFrasesHechas_distintas = []
-palabras_reservadas_catExpresionesAfirmacion_distintas = []
-palabras_reservadas_catExpresionesNegacionDuda_distintas = []
-palabras_reservadas_catLugares_distintas = []
-palabras_reservadas_catDiasSemana_distintas = []
-palabras_reservadas_catAdverbiosTemporales_distintas = []
-palabras_reservadas_catHoras_distintas = []
-palabras_reservadas_catMit_distintas = []
-palabras_reservadas_catPronombresPersonales_distintas = []
+                    stats_per_pair[pareja_actual][9].append(expresion)
+                    if expresion not in stats_per_pair[pareja_actual][22]:
+                        stats_per_pair[pareja_actual][22].append(expresion)
 
-for frase in frases:
-    expresiones_en_frase = usaExpresionReservada(frase)
-    if len(expresiones_en_frase) >= 1:
-        for expresion in expresiones_en_frase:
-            palabras_reservadas_total.append(expresion)
-            if expresion not in palabras_reservadas_distintas:
-                palabras_reservadas_distintas.append(expresion)
+                    tipo_expresion = expresion[0]
 
-num_palabras_reservadas_total = len(palabras_reservadas_total)
-num_palabras_reservadas_distintas = len(palabras_reservadas_distintas)
+                    if tipo_expresion == "Pronombre interrogativo":
+                        palabras_reservadas_catPronombresInterrogativos.append(expresion)
+                        if expresion not in palabras_reservadas_catPronombresInterrogativos_distintas:
+                            palabras_reservadas_catPronombresInterrogativos_distintas.append(expresion)
 
-for expresion in palabras_reservadas_total:
-    tipo_expresion = expresion[0]
-    if tipo_expresion == "Pronombre interrogativo":
-        palabras_reservadas_catPronombresInterrogativos.append(expresion)
-        if expresion not in palabras_reservadas_catPronombresInterrogativos_distintas:
-            palabras_reservadas_catPronombresInterrogativos_distintas.append(expresion)
-    elif tipo_expresion == "Adjetivo":
-        palabras_reservadas_catAdjetivos.append(expresion)
-        if expresion not in palabras_reservadas_catAdjetivos_distintas:
-            palabras_reservadas_catAdjetivos_distintas.append(expresion)
-    elif tipo_expresion == "Saludo o despedida":
-        palabras_reservadas_catSaludosDespedidas.append(expresion)
-        if expresion not in palabras_reservadas_catSaludosDespedidas_distintas:
-            palabras_reservadas_catSaludosDespedidas_distintas.append(expresion)
-    elif tipo_expresion == "Frase hecha":
-        palabras_reservadas_catFrasesHechas.append(expresion)
-        if expresion not in palabras_reservadas_catFrasesHechas_distintas:
-            palabras_reservadas_catFrasesHechas_distintas.append(expresion)
-    elif tipo_expresion == "Expresion de afirmacion":
-        palabras_reservadas_catExpresionesAfirmacion.append(expresion)
-        if expresion not in palabras_reservadas_catExpresionesAfirmacion_distintas:
-            palabras_reservadas_catExpresionesAfirmacion_distintas.append(expresion)
-    elif tipo_expresion == "Expresion de negacion o duda":
-        palabras_reservadas_catExpresionesNegacionDuda.append(expresion)
-        if expresion not in palabras_reservadas_catExpresionesNegacionDuda_distintas:
-            palabras_reservadas_catExpresionesNegacionDuda_distintas.append(expresion)
-    elif tipo_expresion == "Lugar":
-        palabras_reservadas_catLugares.append(expresion)
-        if expresion not in palabras_reservadas_catLugares_distintas:
-            palabras_reservadas_catLugares_distintas.append(expresion)
-    elif tipo_expresion == "Dia de la semana":
-        palabras_reservadas_catDiasSemana.append(expresion)
-        if expresion not in palabras_reservadas_catDiasSemana_distintas:
-            palabras_reservadas_catDiasSemana_distintas.append(expresion)
-    elif tipo_expresion == "Adverbio temporal":
-        palabras_reservadas_catAdverbiosTemporales.append(expresion)
-        if expresion not in palabras_reservadas_catAdverbiosTemporales_distintas:
-            palabras_reservadas_catAdverbiosTemporales_distintas.append(expresion)
-    elif tipo_expresion == "Hora":
-        palabras_reservadas_catHoras.append(expresion)
-        if expresion not in palabras_reservadas_catHoras_distintas:
-            palabras_reservadas_catHoras_distintas.append(expresion)
-    elif tipo_expresion == "Preposicion mit":
-        palabras_reservadas_catMit.append(expresion)
-        if expresion not in palabras_reservadas_catMit_distintas:
-            palabras_reservadas_catMit_distintas.append(expresion)
-    elif tipo_expresion == "Preposicion con pronombre personal":
-        palabras_reservadas_catPronombresPersonales.append(expresion)
-        if expresion not in palabras_reservadas_catPronombresPersonales_distintas:
-            palabras_reservadas_catPronombresPersonales_distintas.append(expresion)
-    else:
-        print "¿Pero que esta pasando aqui?"
+                        stats_per_student[nombre][10].append(expresion)
+                        if expresion not in stats_per_student[nombre][23]:
+                            stats_per_student[nombre][23].append(expresion)
+
+                        stats_per_pair[pareja_actual][10].append(expresion)
+                        if expresion not in stats_per_pair[pareja_actual][23]:
+                            stats_per_pair[pareja_actual][23].append(expresion)
+
+                    elif tipo_expresion == "Adjetivo":
+                        palabras_reservadas_catAdjetivos.append(expresion)
+                        if expresion not in palabras_reservadas_catAdjetivos_distintas:
+                            palabras_reservadas_catAdjetivos_distintas.append(expresion)
+
+                        stats_per_student[nombre][11].append(expresion)
+                        if expresion not in stats_per_student[nombre][24]:
+                            stats_per_student[nombre][24].append(expresion)
+
+                        stats_per_pair[pareja_actual][9].append(expresion)
+                        if expresion not in stats_per_pair[pareja_actual][22]:
+                            stats_per_pair[pareja_actual][22].append(expresion)
+
+                    elif tipo_expresion == "Saludo o despedida":
+                        palabras_reservadas_catSaludosDespedidas.append(expresion)
+                        if expresion not in palabras_reservadas_catSaludosDespedidas_distintas:
+                            palabras_reservadas_catSaludosDespedidas_distintas.append(expresion)
+
+                        stats_per_student[nombre][12].append(expresion)
+                        if expresion not in stats_per_student[nombre][25]:
+                            stats_per_student[nombre][25].append(expresion)
+
+                        stats_per_pair[pareja_actual][12].append(expresion)
+                        if expresion not in stats_per_pair[pareja_actual][25]:
+                            stats_per_pair[pareja_actual][25].append(expresion)
+
+                    elif tipo_expresion == "Frase hecha":
+                        palabras_reservadas_catFrasesHechas.append(expresion)
+                        if expresion not in palabras_reservadas_catFrasesHechas_distintas:
+                            palabras_reservadas_catFrasesHechas_distintas.append(expresion)
+
+                        stats_per_student[nombre][13].append(expresion)
+                        if expresion not in stats_per_student[nombre][26]:
+                            stats_per_student[nombre][26].append(expresion)
+
+                        stats_per_pair[pareja_actual][13].append(expresion)
+                        if expresion not in stats_per_pair[pareja_actual][26]:
+                            stats_per_pair[pareja_actual][26].append(expresion)
+
+                    elif tipo_expresion == "Expresion de afirmacion":
+                        palabras_reservadas_catExpresionesAfirmacion.append(expresion)
+                        if expresion not in palabras_reservadas_catExpresionesAfirmacion_distintas:
+                            palabras_reservadas_catExpresionesAfirmacion_distintas.append(expresion)
+
+                        stats_per_student[nombre][14].append(expresion)
+                        if expresion not in stats_per_student[nombre][27]:
+                            stats_per_student[nombre][27].append(expresion)
+
+                        stats_per_pair[pareja_actual][14].append(expresion)
+                        if expresion not in stats_per_pair[pareja_actual][27]:
+                            stats_per_pair[pareja_actual][27].append(expresion)
+
+                    elif tipo_expresion == "Expresion de negacion o duda":
+                        palabras_reservadas_catExpresionesNegacionDuda.append(expresion)
+                        if expresion not in palabras_reservadas_catExpresionesNegacionDuda_distintas:
+                            palabras_reservadas_catExpresionesNegacionDuda_distintas.append(expresion)
+
+                        stats_per_student[nombre][15].append(expresion)
+                        if expresion not in stats_per_student[nombre][28]:
+                            stats_per_student[nombre][28].append(expresion)
+
+                        stats_per_pair[pareja_actual][15].append(expresion)
+                        if expresion not in stats_per_pair[pareja_actual][28]:
+                            stats_per_pair[pareja_actual][28].append(expresion)
+
+                    elif tipo_expresion == "Lugar":
+                        palabras_reservadas_catLugares.append(expresion)
+                        if expresion not in palabras_reservadas_catLugares_distintas:
+                            palabras_reservadas_catLugares_distintas.append(expresion)
+
+                        stats_per_student[nombre][16].append(expresion)
+                        if expresion not in stats_per_student[nombre][29]:
+                            stats_per_student[nombre][29].append(expresion)
+
+                        stats_per_pair[pareja_actual][16].append(expresion)
+                        if expresion not in stats_per_pair[pareja_actual][29]:
+                            stats_per_pair[pareja_actual][29].append(expresion)
+
+                    elif tipo_expresion == "Dia de la semana":
+                        palabras_reservadas_catDiasSemana.append(expresion)
+                        if expresion not in palabras_reservadas_catDiasSemana_distintas:
+                            palabras_reservadas_catDiasSemana_distintas.append(expresion)
+
+                        stats_per_student[nombre][17].append(expresion)
+                        if expresion not in stats_per_student[nombre][30]:
+                            stats_per_student[nombre][30].append(expresion)
+
+                        stats_per_pair[pareja_actual][17].append(expresion)
+                        if expresion not in stats_per_pair[pareja_actual][30]:
+                            stats_per_pair[pareja_actual][30].append(expresion)
+
+                    elif tipo_expresion == "Adverbio temporal":
+                        palabras_reservadas_catAdverbiosTemporales.append(expresion)
+                        if expresion not in palabras_reservadas_catAdverbiosTemporales_distintas:
+                            palabras_reservadas_catAdverbiosTemporales_distintas.append(expresion)
+
+                        stats_per_student[nombre][18].append(expresion)
+                        if expresion not in stats_per_student[nombre][31]:
+                            stats_per_student[nombre][31].append(expresion)
+
+                        stats_per_pair[pareja_actual][18].append(expresion)
+                        if expresion not in stats_per_pair[pareja_actual][31]:
+                            stats_per_pair[pareja_actual][31].append(expresion)
+
+                    elif tipo_expresion == "Hora":
+                        palabras_reservadas_catHoras.append(expresion)
+                        if expresion not in palabras_reservadas_catHoras_distintas:
+                            palabras_reservadas_catHoras_distintas.append(expresion)
+
+                        stats_per_student[nombre][19].append(expresion)
+                        if expresion not in stats_per_student[nombre][32]:
+                            stats_per_student[nombre][32].append(expresion)
+
+                        stats_per_pair[pareja_actual][19].append(expresion)
+                        if expresion not in stats_per_pair[pareja_actual][32]:
+                            stats_per_pair[pareja_actual][32].append(expresion)
+
+                    elif tipo_expresion == "Preposicion mit":
+                        palabras_reservadas_catMit.append(expresion)
+                        if expresion not in palabras_reservadas_catMit_distintas:
+                            palabras_reservadas_catMit_distintas.append(expresion)
+
+                        stats_per_student[nombre][20].append(expresion)
+                        if expresion not in stats_per_student[nombre][33]:
+                            stats_per_student[nombre][33].append(expresion)
+
+                        stats_per_pair[pareja_actual][20].append(expresion)
+                        if expresion not in stats_per_pair[pareja_actual][33]:
+                            stats_per_pair[pareja_actual][33].append(expresion)
+
+                    elif tipo_expresion == "Preposicion con pronombre personal":
+                        palabras_reservadas_catPronombresPersonales.append(expresion)
+                        if expresion not in palabras_reservadas_catPronombresPersonales_distintas:
+                            palabras_reservadas_catPronombresPersonales_distintas.append(expresion)
+
+                        stats_per_student[nombre][21].append(expresion)
+                        if expresion not in stats_per_student[nombre][34]:
+                            stats_per_student[nombre][34].append(expresion)
+
+                        stats_per_pair[pareja_actual][21].append(expresion)
+                        if expresion not in stats_per_pair[pareja_actual][34]:
+                            stats_per_pair[pareja_actual][34].append(expresion)
+
+                    else:
+                        print "Esto es más raro que la historia de Manuel Bartual..."
+                """
 
 
-num_palabras_reservadas_catPronombresInterrogativos = len(palabras_reservadas_catPronombresInterrogativos)
-num_palabras_reservadas_catAdjetivos = len(palabras_reservadas_catAdjetivos)
-num_palabras_reservadas_catSaludosDespedidas = len(palabras_reservadas_catSaludosDespedidas)
-num_palabras_reservadas_catFrasesHechas = len(palabras_reservadas_catFrasesHechas)
-num_palabras_reservadas_catExpresionesAfirmacion = len(palabras_reservadas_catExpresionesAfirmacion)
-num_palabras_reservadas_catExpresionesNegacionDuda = len(palabras_reservadas_catExpresionesNegacionDuda)
-num_palabras_reservadas_catLugares = len(palabras_reservadas_catLugares)
-num_palabras_reservadas_catDiasSemana = len(palabras_reservadas_catDiasSemana)
-num_palabras_reservadas_catAdverbiosTemporales = len(palabras_reservadas_catAdverbiosTemporales)
-num_palabras_reservadas_catHoras = len(palabras_reservadas_catHoras)
-num_palabras_reservadas_catMit = len(palabras_reservadas_catMit)
-num_palabras_reservadas_catPronombresPersonales = len(palabras_reservadas_catPronombresPersonales)
-num_palabras_reservadas_catPronombresInterrogativos_distintas = \
-    len(palabras_reservadas_catPronombresInterrogativos_distintas)
-num_palabras_reservadas_catAdjetivos_distintas = len(palabras_reservadas_catAdjetivos_distintas)
-num_palabras_reservadas_catSaludosDespedidas_distintas = len(palabras_reservadas_catSaludosDespedidas_distintas)
-num_palabras_reservadas_catFrasesHechas_distintas = len(palabras_reservadas_catFrasesHechas_distintas)
-num_palabras_reservadas_catExpresionesAfirmacion_distintas = len(palabras_reservadas_catExpresionesAfirmacion_distintas)
-num_palabras_reservadas_catExpresionesNegacionDuda_distintas = \
-    len(palabras_reservadas_catExpresionesNegacionDuda_distintas)
-num_palabras_reservadas_catLugares_distintas = len(palabras_reservadas_catLugares_distintas)
-num_palabras_reservadas_catDiasSemana_distintas = len(palabras_reservadas_catDiasSemana_distintas)
-num_palabras_reservadas_catAdverbiosTemporales_distintas = len(palabras_reservadas_catAdverbiosTemporales_distintas)
-num_palabras_reservadas_catHoras_distintas = len(palabras_reservadas_catHoras_distintas)
-num_palabras_reservadas_catMit_distintas = len(palabras_reservadas_catMit_distintas)
-num_palabras_reservadas_catPronombresPersonales_distintas = len(palabras_reservadas_catPronombresPersonales_distintas)
-
+# Imprimir expresiones reservadas
+"""print "-------------"
+print "Palabras reservadas total:", len(palabras_reservadas_total), ", de las cuales distintas:", len(palabras_reservadas_distintas)
 print "-------------"
-print "Palabras reservadas total:", num_palabras_reservadas_total, ", de las cuales distintas:", num_palabras_reservadas_distintas
-print "-------------"
-print "Pronombres interrogativos:", num_palabras_reservadas_catPronombresInterrogativos, ", de los cuales distintos:", num_palabras_reservadas_catPronombresInterrogativos_distintas
-for expresion in palabras_reservadas_catPronombresInterrogativos:
-    print expresion[1] + ",",
-print "\n-------------"
-print "Adjetivos:", num_palabras_reservadas_catAdjetivos, ", de los cuales distintos:", num_palabras_reservadas_catAdjetivos_distintas
-for expresion in palabras_reservadas_catAdjetivos_distintas:
-    print expresion[1] + ",",
-print "\n-------------"
-print "Saludos o despedidas:", num_palabras_reservadas_catSaludosDespedidas, ", de los cuales distintos:", num_palabras_reservadas_catSaludosDespedidas_distintas
-for expresion in palabras_reservadas_catSaludosDespedidas_distintas:
-    print expresion[1] + ",",
-print "\n-------------"
-print "Frases hechas:", num_palabras_reservadas_catFrasesHechas, ", de los cuales distintos:", num_palabras_reservadas_catFrasesHechas_distintas
-for expresion in palabras_reservadas_catFrasesHechas_distintas:
-    print expresion[1] + ",",
-print "\n-------------"
-print "Expresiones de afirmacion:", num_palabras_reservadas_catExpresionesAfirmacion, ", de los cuales distintos:", num_palabras_reservadas_catExpresionesAfirmacion_distintas
-for expresion in palabras_reservadas_catExpresionesAfirmacion_distintas:
-    print expresion[1] + ",",
-print "\n-------------"
-print "Expresiones de negacion o duda:", num_palabras_reservadas_catExpresionesNegacionDuda, ", de los cuales distintos:", num_palabras_reservadas_catExpresionesNegacionDuda_distintas
-for expresion in palabras_reservadas_catExpresionesNegacionDuda_distintas:
-    print expresion[1] + ",",
-print "\n-------------"
-print "Lugares:", num_palabras_reservadas_catLugares, ", de los cuales distintos:", num_palabras_reservadas_catLugares_distintas
-for expresion in palabras_reservadas_catLugares_distintas:
-    print expresion[1] + ",",
-print "\n-------------"
-print "Dias de la semana:", num_palabras_reservadas_catDiasSemana, ", de los cuales distintos:", num_palabras_reservadas_catDiasSemana_distintas
-for expresion in palabras_reservadas_catDiasSemana:
-    print expresion[1] + ",",
-print "\n-------------"
-print "Adverbios temporales:", num_palabras_reservadas_catAdverbiosTemporales, ", de los cuales distintos:", num_palabras_reservadas_catAdverbiosTemporales_distintas
-for expresion in palabras_reservadas_catAdverbiosTemporales_distintas:
-    print expresion[1] + ",",
-print "\n-------------"
-print "Horas:", num_palabras_reservadas_catHoras, ", de los cuales distintos:", num_palabras_reservadas_catHoras_distintas
-for expresion in palabras_reservadas_catHoras_distintas:
-    print expresion[1] + ",",
-print "\n-------------"
-print "Preposicion mit:", num_palabras_reservadas_catMit, ", de los cuales distintos:", num_palabras_reservadas_catMit_distintas
-for expresion in palabras_reservadas_catMit_distintas:
-    print expresion[1] + ",",
-print "\n-------------"
-print "Pronombres personales:", num_palabras_reservadas_catPronombresPersonales, ", de los cuales distintos:", num_palabras_reservadas_catPronombresPersonales_distintas
-for expresion in palabras_reservadas_catPronombresPersonales_distintas:
-    print expresion[1] + ",",
-print "\n-------------"'''
 
+i = 0
+while i < len(palabras_reservadas_total_por_categoria):
+    print palabras_reservadas_total_por_categoria[i][0][0], ": ", len(palabras_reservadas_total_por_categoria[i]), ", de los cuales distintos: ", len(palabras_reservadas_distintas_por_categoria[i])
+    for expresion in palabras_reservadas_distintas_por_categoria[i]:
+        print expresion[1] + ",",
+    print "\n-------------"
+
+    i += 1
+"""
