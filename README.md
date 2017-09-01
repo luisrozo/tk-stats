@@ -1,4 +1,4 @@
-![Logo](http://imgur.com/a/ZHSUK)
+![Logo](http://i.imgur.com/azI7ASc.png)
 
 Este script ha sido realizado para la Universidad de Cádiz con la finalidad de buscar ciertas estadísticas (las cuales se detallan más adelante)
 referentes al uso del juego/aplicación TerminKalender, el cual consiste en acordar varias actividades mediante el uso
