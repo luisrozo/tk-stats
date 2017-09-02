@@ -18,13 +18,23 @@ Hay dos scripts: uno (*/app/app_stats.py*) para sacar estadísticas de los *logs
 Para usar los scripts, seguir los siguientes pasos:
 
 1. Clonar este repositorio usando el siguiente comando en una terminal:
-```git clone https://github.com/luisrozo/tk-stats.git```
-2. Colocar los ficheros *logs* en la carpeta *app/* a los que se quiera aplicar el script.
-3. Igualmente, colocar los ficheros *Excel* en la carpeta *paper/*.
-4. Para ejecutar el script *app_stats.py*, abrir una terminal en la carpeta *app/* y ejecutar el siguiente comando:
-```python app_stats.py```
-5. Para ejecutar el script *paper_stats.py*, abrir una terminal en la carpeta *paper/* y ejecutar el siguiente comando:
-```python paper_stats.py```
+        ```
+        git clone https://github.com/luisrozo/tk-stats.git
+        ```
+        
+2. Colocar los ficheros *logs* en la carpeta */app/* a los que se quiera aplicar el script.
+
+3. Igualmente, colocar los ficheros *Excel* en la carpeta */paper/*.
+
+4. Para ejecutar el script *app_stats.py*, abrir una terminal en la carpeta */app/* y ejecutar el siguiente comando:
+        ```
+        python app_stats.py
+        ```
+        
+5. Para ejecutar el script *paper_stats.py*, abrir una terminal en la carpeta */paper/* y ejecutar el siguiente comando:
+        ```
+        python paper_stats.py
+        ```
 
 
 ### Estadísticas
@@ -37,7 +47,7 @@ Las estadísticas buscadas en los chats se dividen en tres grandes categorías:
 
 A continuación, se listan las estadísticas que se buscan para todas las categorías:
 
-~~- Tiempo empleado~~
+- ~~Tiempo empleado~~
 - Palabras
 - Palabras distintas
 - Palabras correctas/en diccionario
@@ -58,19 +68,19 @@ A continuación, se listan las estadísticas que se buscan para todas las catego
 - Frases exclamativas
 - Mensajes
 - Turnos (unidades)
-~~- Turnos (tiempo)~~
-~~- Actividades en pareja:
-    - Actividades propuestas
-    - Actividades acordadas
-    - Actividades mal acordadas
-- Actividades en trío:
-    - Actividades propuestas
-    - Actividades acordadas
-    - Actividades mal acordadas~~
+- ~~Turnos (tiempo)~~
+- ~~Actividades en pareja:~~
+    - ~~Actividades propuestas~~
+    - ~~Actividades acordadas~~
+    - ~~Actividades mal acordadas~~
+- ~~Actividades en trío:~~
+    - ~~Actividades propuestas~~
+    - ~~Actividades acordadas~~
+    - ~~Actividades mal acordadas~~
 
 Además, para las estadísticas globales y por alumno, se buscarán:
-~~- Actividades individuales:
-    - Actividades acordadas~~
+- ~~Actividades individuales:~~
+    - ~~Actividades acordadas~~
 
 Para ver qué es exactamente una *palabra reservada* o una *estructura gramatical*, haz click en los respectivos enlaces.
 
