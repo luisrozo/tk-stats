@@ -386,6 +386,31 @@ for log in logs:
             if pareja not in parejas:
                 parejas.append(pareja)
 
+lineas_actividades_grupo = []
+lineas_actividades_individuales = []
+for log in logs:
+    index_tasks = log.index("TASKS \n")
+    if "------------ Individuelle Aktivit\xc3\xa4ten ------------ \n" in log:
+        index_individuales = log.index("------------ Individuelle Aktivit\xc3\xa4ten ------------ \n")
+        lineas_actividades_grupo.append(log[index_tasks:index_individuales])
+        lineas_actividades_individuales.append(log[index_individuales:])
+    else:
+        lineas_actividades_grupo.append(log[index_tasks:])
+
+trios = []
+linea_anterior = ""
+for lines in lineas_actividades_grupo:
+    for line in lines:
+        if "----->" in linea_anterior:
+            if len(line.split()) > 4:
+                alumno1 = linea_anterior.split()[1] + " " + linea_anterior.split()[2]
+                alumno2 = line.split()[1] + " " + line.split()[2]
+                alumno3 = line.split()[4] + " " + line.split()[5]
+                trio = (alumno1 + "-" + alumno2 + "-" + alumno3)
+                trios.append(trio)
+
+        linea_anterior = line
+
 stats_per_student = {}
 stats_per_pair = {}
 
@@ -449,6 +474,14 @@ stats_per_pair = {}
 # 55: Estructuras gramaticales similares distintas - Categoría "Preguntas con Complemento de Tiempo"
 # 56: Estructuras gramaticales similares distintas - Categoría "Preguntas simples"
 # 57: Estructuras gramaticales similares distintas - Categoría "Enunciados con Complemento Directo"
+# 58: Actividades propuestas en pareja
+# 59: Actividades acordadas en pareja
+# 60: Actividades mal acordadas en pareja
+''' Las siguientes estadísticas sólo están disponibles para estadísticas por alumno '''
+# 61: Actividades propuestas en trío
+# 62: Actividades acordadas en trío
+# 63: Actividades mal acordadas en trío
+# 64: Actividades acordadas individualmente
 
 
 for alumno in alumnos:
@@ -502,6 +535,13 @@ for alumno in alumnos:
                                  ["Estructuras gramaticales similares distintas - Categoría \"Preguntas con Complemento de Tiempo\"", ],
                                  ["Estructuras gramaticales similares distintas - Categoría \"Preguntas simples\"", ],
                                  ["Estructuras gramaticales similares distintas - Categoría \"Enunciados con Complemento Directo\"", ],
+                                 ["Actividades propuestas en pareja", ],
+                                 ["Actividades acordadas en pareja", ],
+                                 ["Actividades mal acordadas en pareja", ],
+                                 ["Actividades propuestas en trio", ],
+                                 ["Actividades acordadas en trio", ],
+                                 ["Actividades mal acordadas en trio", ],
+                                 ["Actividades acordadas individualmente", ],
                                  ]
 
 for pareja in parejas:
@@ -555,7 +595,23 @@ for pareja in parejas:
                               ["Estructuras gramaticales similares distintas - Categoría \"Preguntas con Complemento de Tiempo\"", ],
                               ["Estructuras gramaticales similares distintas - Categoría \"Preguntas simples\"", ],
                               ["Estructuras gramaticales similares distintas - Categoría \"Enunciados con Complemento Directo\"", ],
+                              ["Actividades propuestas en pareja", ],
+                              ["Actividades acordadas en pareja", ],
+                              ["Actividades mal acordadas en pareja", ],
                               ]
+
+# Adicionalmente, se utilizará un diccionario para las estadísticas en trío con los siguientes índices:
+# 0: Actividades propuestas en trio
+# 1: Actividades acordadas en trio
+# 2: Actividades mal acordadas en trio
+actividades_por_trios = {}
+
+for trio in trios:
+    actividades_por_trios[trio] = [["Actividades propuestas en trio", ],
+                                   ["Actividades acordadas en trio", ],
+                                   ["Actividades mal acordadas en trio", ],
+                                   ]
+
 
 # Obtención de mensajes, frases y turnos
 mensajes = []
@@ -671,6 +727,19 @@ estructuras_gramaticales_similares_distintas_por_categoria = [estructuras_gramat
                                                              estructuras_gramaticales_similares_catPreguntasCTiempo_distintas,
                                                              estructuras_gramaticales_similares_catPreguntasSimples_distintas,
                                                              estructuras_gramaticales_similares_catEnunciadosCDirecto_distintas]
+
+# Actividades en pareja
+actividades_propuestas_pareja = []
+actividades_acordadas_pareja = []
+actividades_mal_acordadas_pareja = []
+
+# Actividades en trío
+actividades_propuestas_trio = []
+actividades_acordadas_trio = []
+actividades_mal_acordadas_trio = []
+
+# Actividades individuales (solo estadísticas general y por alumno)
+actividades_acordadas_individuales = []
 
 for log in logs:
     for line in log:
