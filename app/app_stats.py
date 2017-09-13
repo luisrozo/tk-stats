@@ -12,6 +12,7 @@ from datetime import time, datetime, timedelta
 import enchant
 import os
 import re
+import itertools
 
 # Cargar todos los ficheros 'logs' existentes en la carpeta del script
 logs = []
@@ -351,12 +352,21 @@ ampliacion_diccionario = []
 lista_manual = ["Ah", "ah", "Ahh", "ahh", "Disco", "jajaja", "Mmm", "mmm", "ok"]
 
 fichero_con_tareas = open(r'../tasks.xml', 'r').readlines()
+
+# Planes para contar las actividades
+planes = []
+
 for linea in fichero_con_tareas:
     if '<field>' in linea:
         palabras = re.sub(r'<field>|\(|\)|</field>', '', linea).split()
         for palabra in palabras:
             ampliacion_diccionario.append(palabra.title())
             ampliacion_diccionario.append(palabra.lower())
+
+    if '<name>' in linea and 'Individuelle' not in linea:
+        plan = re.sub(r'<name>|</name>|\?', '', linea)
+        planes.append(plan)
+
 
 for palabra in lista_manual:
     ampliacion_diccionario.append(palabra)
@@ -365,6 +375,30 @@ for adv in adverbios_temporales:
     ampliacion_diccionario.append(adv)
 
 ampliacion_diccionario = sorted(set(ampliacion_diccionario))
+
+
+class Actividad:
+    def __init__(self, nombre_act, autor, partners, position, what_exactly, where, where_exactly, trio):
+        self.nombre_act = nombre_act
+        self.autor = autor
+        self.partners = partners
+        self.position = position
+        self.what_exactly = what_exactly
+        self.where = where
+        self.where_exactly = where_exactly
+        self.trio = trio
+
+    def __str__(self):
+        print "--------------------------"
+        print "Nombre de actividad: " + self.nombre_act
+        print "Autor: " + self.autor
+        print "Partners: " + self.partners
+        print "Position: " + self.position
+        print "What exactly: " + self.what_exactly
+        print "Where: " + self.where
+        print "Where exactly: " + self.where_exactly
+        print "Trio: " + str(self.trio)
+        print "--------------------------"
 
 """ ↓ EXTRACCIÓN DE ESTADÍSTICAS ↓ """
 
@@ -1075,6 +1109,210 @@ for log in logs:
                     else:
                         print "Esto es más raro que la historia de Manuel Bartual..."
                 """
+
+# Extracción de actividades en grupo
+nombre_act = ""
+autor = ""
+partners = ""
+position = ""
+what_exactly = ""
+where = ""
+where_exactly = ""
+trio = True
+actividades = []
+insertar_actividad = False
+
+for lines in lineas_actividades_grupo:
+    for line in lines:
+        if insertar_actividad:
+            actividad = Actividad(nombre_act, autor, partners, position, what_exactly, where, where_exactly, trio)
+            actividades.append(actividad)
+            insertar_actividad = False
+
+        if "------------" in line:
+            nombre_act = line.split()[1]
+        elif "----->" in line:
+            autor = line.split()[1] + " " + line.split()[2]
+        elif "Partners:" in line:
+            if len(line.split()) > 4:
+                partners = line.split()[1] + " " + line.split()[2] + "-" + line.split()[4] + " " + line.split()[5]
+                trio = True
+            else:
+                partners = line.split()[1] + " " + line.split()[2]
+                trio = False
+        elif "Position:" in line:
+            position = line.replace("Position: ", "")
+        elif "What exactly:" in line:
+            what_exactly = line.replace("What exactly: ", "")
+        elif "Where:" in line:
+            where = line.replace("Where: ", "")
+        elif "Where exactly:" in line:
+            where_exactly = line.replace("Where exactly: ", "")
+            insertar_actividad = True
+
+
+for actividad in actividades:
+    i = 0
+    acordando_actividad = False
+    index = actividades.index(actividad)
+    nombre_act = actividad.nombre_act
+
+    if not actividad.trio:
+        while i < len(actividades):
+            if nombre_act == actividades[i].nombre_act:
+                if i != index and not actividades[i].trio:
+                    if actividad.autor == actividades[i].partners and \
+                            actividad.partners == actividades[i].autor:
+                                acordando_actividad = True
+                                alumno1 = actividad.autor
+                                alumno2 = actividades[i].autor
+                                pareja = alumno1 + "-" + alumno2
+                                if pareja not in stats_per_pair.keys():
+                                    pareja = alumno2 + "-" + alumno1
+
+                                if actividad.position == actividades[i].position and \
+                                    actividad.what_exactly == actividades[i].what_exactly and \
+                                    actividad.where == actividades[i].where and \
+                                        actividad.where_exactly == actividades[i].where_exactly:
+                                            actividades_acordadas_pareja.append(actividad)
+                                            stats_per_student[alumno1][59].append(actividad)
+                                            stats_per_pair[pareja][59].append(actividad)
+
+                                else:
+                                    actividades_mal_acordadas_pareja.append(actividad)
+                                    stats_per_student[alumno1][60].append(actividad)
+                                    stats_per_pair[pareja][60].append(actividad)
+            i += 1
+
+        if not acordando_actividad:
+            alumno1 = actividad.autor
+            alumno2 = actividad.partners
+            pareja = alumno1 + "-" + alumno2
+            if pareja not in stats_per_pair.keys():
+                pareja = alumno2 + "-" + alumno1
+
+            actividades_propuestas_pareja.append(actividad)
+            stats_per_student[alumno1][58].append(actividad)
+            stats_per_pair[pareja][58].append(actividad)
+
+    else:
+        j = 0
+        while i < len(actividades):
+            if nombre_act == actividades[i].nombre_act:
+                if i != index and actividades[i].trio:
+                    if actividad.autor in actividades[i].partners and \
+                            actividades[i].autor in actividad.partners:
+                                if actividades[i].partners.split("-")[0] != actividades[i].partners.split("-")[1]:
+                                    while j < len(actividades):
+                                        if nombre_act == actividades[j].nombre_act:
+                                            if j != index and actividades[j].trio:
+                                                if actividad.autor in actividades[j].partners and \
+                                                        actividades[i].autor in actividades[j].partners:
+                                                            acordando_actividad = True
+                                                            alumno1 = actividad.autor
+                                                            alumno2 = actividades[i].autor
+                                                            alumno3 = actividades[j].autor
+                                                            trio = [alumno1, alumno2, alumno3]
+                                                            trio_string = ""
+
+                                                            for comb in list(itertools.permutations(trio)):
+                                                                trio_string = comb[0] + "-" + comb[1] + "-" + comb[2]
+                                                                if trio_string in actividades_por_trios.keys():
+                                                                    break
+
+                                                            if actividad.position == actividades[i].position == actividades[j].position and \
+                                                                actividad.what_exactly == actividades[i].what_exactly == actividades[j].what_exactly and \
+                                                                actividad.where == actividades[i].where == actividades[j].where and \
+                                                                    actividad.where_exactly == actividades[i].where_exactly == actividades[j].where_exactly:
+                                                                        actividades_acordadas_trio.append(actividad)
+                                                                        stats_per_student[alumno1][62].append(actividad)
+                                                                        actividades_por_trios[trio_string][1].append(actividad)
+
+                                                            else:
+                                                                actividades_mal_acordadas_trio.append(actividad)
+                                                                stats_per_student[alumno1][63].append(actividad)
+                                                                actividades_por_trios[trio_string][2].append(actividad)
+                                        j += 1
+                                else:
+                                    if actividad.partners.split("-")[0] == actividad.partners.split("-")[1]:
+                                        acordando_actividad = True
+                                        alumno1 = actividad.autor
+                                        alumno2 = actividad.partners.split("-")[0]
+                                        trio = [alumno1, alumno2, alumno2]
+                                        trio_string = ""
+
+                                        for comb in list(itertools.permutations(trio)):
+                                            trio_string = comb[0] + "-" + comb[1] + "-" + comb[2]
+                                            if trio_string in actividades_por_trios.keys():
+                                                break
+
+                                        if actividad.position == actividades[i].position and \
+                                            actividad.what_exactly == actividades[i].what_exactly and \
+                                            actividad.where == actividades[i].where and \
+                                                actividad.where_exactly == actividades[i].where_exactly:
+                                                    actividades_acordadas_trio.append(actividad)
+                                                    stats_per_student[alumno1][62].append(actividad)
+                                                    actividades_por_trios[trio_string][1].append(actividad)
+
+                                        else:
+                                            actividades_mal_acordadas_trio.append(actividad)
+                                            stats_per_student[alumno1][63].append(actividad)
+                                            actividades_por_trios[trio_string][2].append(actividad)
+            i += 1
+
+        if not acordando_actividad:
+            alumno1 = actividad.autor
+            alumno2 = actividad.partners.split("-")[0]
+            alumno3 = actividad.partners.split("-")[1]
+            trio = [alumno1, alumno2, alumno3]
+            trio_string = ""
+
+            for comb in list(itertools.permutations(trio)):
+                trio_string = comb[0] + "-" + comb[1] + "-" + comb[2]
+                if trio_string in actividades_por_trios.keys():
+                    break
+
+            actividades_propuestas_trio.append(actividad)
+            stats_per_student[alumno1][61].append(actividad)
+            actividades_por_trios[trio_string][0].append(actividad)
+
+# Extracción de actividades individuales
+nombre_act = ""
+autor = ""
+partners = ""
+position = ""
+what_exactly = ""
+where = ""
+where_exactly = ""
+trio = False
+actividades_individuales = []
+insertar_actividad = False
+
+for lines in lineas_actividades_individuales:
+    for line in lines:
+        if insertar_actividad:
+            actividad = Actividad(nombre_act, autor, partners, position, what_exactly, where, where_exactly, trio)
+            actividades_individuales.append(actividad)
+            insertar_actividad = False
+
+        if "------------" in line:
+            nombre_act = "Individuelle Aktivitäten"
+        elif "----->" in line:
+            autor = line.split()[1] + " " + line.split()[2]
+        elif "Position:" in line:
+            position = line.replace("Position: ", "")
+        elif "What exactly:" in line:
+            what_exactly = line.replace("What exactly: ", "")
+        elif "Where:" in line:
+            where = line.replace("Where: ", "")
+        elif "Where exactly:" in line:
+            where_exactly = line.replace("Where exactly: ", "")
+            insertar_actividad = True
+
+for actividad in actividades_individuales:
+    actividades_acordadas_individuales.append(actividad)
+    stats_per_student[actividad.autor][64].append(actividad)
+
 
 
 # Imprimir expresiones reservadas
