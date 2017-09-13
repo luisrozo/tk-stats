@@ -58,10 +58,10 @@ A continuación, se listan las estadísticas que se buscan para todas las catego
 - Palabras reservadas distintas
 - Palabras reservadas por categoría
 - Palabras reservadas distintas por categoría
-- Estructuras gramaticales precisas por tipos
-- Estructuras gramaticales precisas distintas por tipos
-- Estructuras gramaticales similares por tipos
-- Estructuras gramaticales similares distintas por tipos
+- ~~Estructuras gramaticales precisas por tipos~~
+- ~~Estructuras gramaticales precisas distintas por tipos~~
+- ~~Estructuras gramaticales similares por tipos~~
+- ~~Estructuras gramaticales similares distintas por tipos~~
 - Frases
 - Frases de una sola palabra
 - Frases interrogativas
@@ -69,18 +69,18 @@ A continuación, se listan las estadísticas que se buscan para todas las catego
 - Mensajes
 - Turnos (unidades)
 - ~~Turnos (tiempo)~~
-- ~~Actividades en pareja:~~
-    - ~~Actividades propuestas~~
-    - ~~Actividades acordadas~~
-    - ~~Actividades mal acordadas~~
-- ~~Actividades en trío:~~
-    - ~~Actividades propuestas~~
-    - ~~Actividades acordadas~~
-    - ~~Actividades mal acordadas~~
+- Actividades en pareja:
+    - Actividades propuestas
+    - Actividades acordadas
+    - Actividades mal acordadas
+- Actividades en trío:
+    - Actividades propuestas
+    - Actividades acordadas
+    - Actividades mal acordadas
 
 Además, para las estadísticas globales y por alumno, se buscarán:
-- ~~Actividades individuales:~~
-    - ~~Actividades acordadas~~
+- Actividades individuales:
+    - Actividades acordadas
 
 Para ver qué es exactamente una *palabra reservada* o una *estructura gramatical*, haz click en los respectivos enlaces.
 
