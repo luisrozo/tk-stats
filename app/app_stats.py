@@ -2,13 +2,12 @@
 # encoding: utf-8
 
 """ Script para buscar estadísticas en los logs de la aplicación TerminKalender.
-    Visita la documentación para obtener información más detallada.
+    Visita la documentación en GitHub para obtener información más detallada.
 
     Autor: Luis Gonzaga Rozo Bueno. 2017.
 """
 
-from datetime import time, datetime, timedelta
-
+import sys
 import enchant
 import os
 import re
@@ -160,10 +159,6 @@ for log in logs:
             for replacement in point:
                 log[index] = linea.replace(replacement, " .")
             linea = log[index]
-
-# for log in logs:
-#     for line in log:
-#         print line
 
 # Para obtener las estadisticas referentes a palabras o expresiones reservadas, se hace uso de la siguientes estructuras
 
@@ -351,22 +346,18 @@ def usaExpresionReservada(frase):
 ampliacion_diccionario = []
 lista_manual = ["Ah", "ah", "Ahh", "ahh", "Disco", "jajaja", "Mmm", "mmm", "ok"]
 
-fichero_con_tareas = open(r'../tasks.xml', 'r').readlines()
-
-# Planes para contar las actividades
-planes = []
-
-for linea in fichero_con_tareas:
-    if '<field>' in linea:
-        palabras = re.sub(r'<field>|\(|\)|</field>', '', linea).split()
-        for palabra in palabras:
-            ampliacion_diccionario.append(palabra.title())
-            ampliacion_diccionario.append(palabra.lower())
-
-    if '<name>' in linea and 'Individuelle' not in linea:
-        plan = re.sub(r'<name>|</name>|\?', '', linea)
-        planes.append(plan)
-
+try:
+    fichero_con_tareas = open(r'../tasks.xml', 'r').readlines()
+    for linea in fichero_con_tareas:
+        if '<field>' in linea:
+            palabras = re.sub(r'<field>|\(|\)|</field>', '', linea).split()
+            for palabra in palabras:
+                ampliacion_diccionario.append(palabra.title())
+                ampliacion_diccionario.append(palabra.lower())
+except IOError:
+    print "Falta el fichero tasks.xml; consulta la sección \"Sobre el script - Instrucciones de uso\" " \
+          "para más información."
+    sys.exit()
 
 for palabra in lista_manual:
     ampliacion_diccionario.append(palabra)
@@ -399,6 +390,7 @@ class Actividad:
         print "Where exactly: " + self.where_exactly
         print "Trio: " + str(self.trio)
         print "--------------------------"
+
 
 """ ↓ EXTRACCIÓN DE ESTADÍSTICAS ↓ """
 
@@ -933,7 +925,7 @@ for log in logs:
                             stats_per_pair[pareja_actual][8].append(palabra)
 
             # Palabras reservadas
-            """expresiones_en_mensaje = usaExpresionReservada(mensaje)
+            expresiones_en_mensaje = usaExpresionReservada(mensaje)
             if len(expresiones_en_mensaje) >= 1:
                 for expresion in expresiones_en_mensaje:
                     palabras_reservadas_total.append(expresion)
@@ -1108,7 +1100,7 @@ for log in logs:
 
                     else:
                         print "Esto es más raro que la historia de Manuel Bartual..."
-                """
+
 
 # Extracción de actividades en grupo
 nombre_act = ""
@@ -1313,19 +1305,3 @@ for actividad in actividades_individuales:
     actividades_acordadas_individuales.append(actividad)
     stats_per_student[actividad.autor][64].append(actividad)
 
-
-
-# Imprimir expresiones reservadas
-"""print "-------------"
-print "Palabras reservadas total:", len(palabras_reservadas_total), ", de las cuales distintas:", len(palabras_reservadas_distintas)
-print "-------------"
-
-i = 0
-while i < len(palabras_reservadas_total_por_categoria):
-    print palabras_reservadas_total_por_categoria[i][0][0], ": ", len(palabras_reservadas_total_por_categoria[i]), ", de los cuales distintos: ", len(palabras_reservadas_distintas_por_categoria[i])
-    for expresion in palabras_reservadas_distintas_por_categoria[i]:
-        print expresion[1] + ",",
-    print "\n-------------"
-
-    i += 1
-"""
