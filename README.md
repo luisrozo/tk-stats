@@ -82,7 +82,7 @@ Además, para las estadísticas globales y por alumno, se buscarán:
 - Actividades individuales:
     - Actividades acordadas
 
-Para ver qué es exactamente una *palabra reservada* o una *estructura gramatical*, haz click en los respectivos enlaces.
+Para ver qué es exactamente una *[palabra reservada](https://github.com/luisrozo/tk-stats/wiki/Palabras-reservadas)* o una *[estructura gramatical](https://github.com/luisrozo/tk-stats/wiki/Estructura-gramatical)*, haz click en los respectivos enlaces.
 
 ### Preprocesado
 Con el fin de determinar estadísticas más cercanas a la realidad y con mayor facilidad, antes de la extracción de estadísticas se realiza un preprocesado, tanto a los logs de la aplicación como a las transcripciones de la versión en papel. Este preprocesado realiza los siguientes cambios:
@@ -100,10 +100,10 @@ Con el fin de determinar estadísticas más cercanas a la realidad y con mayor f
 - Todas las vocales que aparezcan tres o más veces seguidas en una palabra, se normaliza a una sola.
 - Se quitan todas las comillas.
 - Se añaden espacios a la izquierda y a la derecha de todos los paréntesis. "*(Github)*" pasaría a " *(* *Github* *)* ".
-- A cada punto (*.*) se le añade un espacio a la izquierda. Las excepciones para este caso son:
+- A cada punto (*.*) se le añade un espacio a ambos lados. Las excepciones para este caso son:
     - Dicho punto no pertenece a unos puntos suspensivos (*...*).
     - Dicho punto no pertenece al uso del emoticono de sorpresa (*o.o*).
 
 ### Salida del script
-El script generará un fichero de texto plano en la carpeta donde se ejecute el mismo que contendrá información sobre las estadísticas que se han encontrado.
+El script generará un fichero de texto plano en la carpeta donde se ejecute el mismo que contendrá información sobre las estadísticas que se han extrado.
 
