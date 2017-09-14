@@ -157,7 +157,7 @@ for log in logs:
         if point and not ellipsis and not shocked:
             index = log.index(linea)
             for replacement in point:
-                log[index] = linea.replace(replacement, " .")
+                log[index] = linea.replace(replacement, " . ")
             linea = log[index]
 
 # Para obtener las estadisticas referentes a palabras o expresiones reservadas, se hace uso de la siguientes estructuras
@@ -291,8 +291,36 @@ sustantivos = ["Abend", "Ahnung", "Bibliothek", "Café", "Copycenter", "Copyshop
                "Wochenende",
                "Zeit", "Zentrum", "zu Hause", "zuhause"]
 
+# Igual, para las estructuras gramaticales:
 
-# Para buscar estas expresiones en los logs, se llama a la funcion usaExpresionReservada().
+"""
+sustantivos_masculinos = ["in den Supermarkt ?", "in den Pub ?", "in den Park ?"]
+sustantivo_playa = ["an den Strand ?"]
+sustantivos_femeninos = ["in die Universität ?", "in die Uni ?", "in die Kneipe ?", "in die Bibliothek ?", "in die Disco ?"]
+sustantivos_neutros = ["in das Kino ?", "in das Einkaufszentrum ?", "in das Fussballstadium ?", "in das Fussballstadion ?",
+                       "in das Fußballstadium ?", "in das Fußballstadion ?", "in das Fitnessstudio ?",
+                       "in das Fitnesszentrum ?", "in das Fitnesscenter ?", "in das Theater ?", "in das Café ?",
+                       "in das Cafe ?", "in das Konzert ?", "ins Kino ?", "ins Einkaufszentrum ?", "ins Fussballstadium ?",
+                       "ins Fussballstadion ?", "ins Fußballstadium ?", "ins Fußballstadion ?", "ins Fitnessstudio ?",
+                       "ins Fitnesszentrum ?", "ins Fitnesscenter ?", "ins Theater ?", "ins Café ?", "ins Cafe ?",
+                       "ins Konzert ?"]
+ciudades = ["nach Cádiz ?", "nach Cadiz ?", "nach Chiclana ?", "nach Chipiona ?", "nach Sánlucar ?", "nach San Fernando ?",
+            "nach Conil ?", "nach El Puerto ?", "nach Puerto Real ?", "nach Madrid ?", "nach Barcelona ?"]
+sustantivos_array = [sustantivos_masculinos, sustantivo_playa, sustantivos_femeninos, sustantivos_neutros, ciudades]
+frases = ["gehen wir", "fahren wir", "gehst du mit mir", "gehst du mit mir und _", "wann gehst du mit mir",
+          "wann gehst du mit mir und _", "kommst du mit mir", "kommst du mit mir und _", "kommst du mit uns"]
+
+preguntas_con_complemento_lugar = []
+for frase in frases:
+    for lista in sustantivos_array:
+        for sust in lista:
+            preguntas_con_complemento_lugar.append(frase + " " + sust)
+"""
+
+''' FALTAN OTRAS ESTRUCTURAS GRAMATICALES '''
+
+
+# Para buscar las expresiones reservadas en los logs, se llama a la funcion usaExpresionReservada().
 
 def usaExpresionReservada(frase):
     # El array expresionesUtilizadas contendra tuplas de la forma [Tipo de expresion, expresion]
@@ -1305,3 +1333,160 @@ for actividad in actividades_individuales:
     actividades_acordadas_individuales.append(actividad)
     stats_per_student[actividad.autor][64].append(actividad)
 
+
+# Salida de estadísticas hacia fichero de texto
+
+file = open("stats.txt", "w")
+
+file.write("________________________________\n")
+file.write("|                              |\n")
+file.write("| ESTADÍSTICAS EXTRAÍDAS (APP) |\n")
+file.write("|______________________________|\n")
+
+file.write("\n-------> Categoría: General <-------\n")
+file.write("\nPalabras: " + str(len(palabras)))
+file.write("\nPalabras distintas: " + str(len(palabras_distintas)))
+file.write("\nPalabras correctas: " + str(len(palabras_en_diccionario)))
+file.write("\nPalabras correctas distintas: " + str(len(palabras_en_diccionario_distintas)))
+file.write("\nPalabras incorrectas: " + str(len(palabras_fuera_diccionario)))
+file.write("\nPalabras incorrectas distintas: " + str(len(palabras_fuera_diccionario_distintas)))
+file.write("\nPalabras reservadas total: " + str(len(palabras_reservadas_total)))
+file.write("\nPalabras reservadas distintas: " + str(len(palabras_reservadas_distintas)))
+i = 0
+while i < len(palabras_reservadas_total_por_categoria):
+    file.write("\nPalabras reservadas total - Categoría " + palabras_reservadas_total_por_categoria[i][0][0] + ": " + str(len(palabras_reservadas_total_por_categoria[i])))
+    file.write("\n... de las cuales distintas: " + str(len(palabras_reservadas_distintas_por_categoria[i])))
+    i += 1
+file.write("\nFrases: " + str(len(frases)))
+file.write("\nFrases de una sola palabra: " + str(len(frases_una_palabra)))
+file.write("\nFrases interrogativas: " + str(len(frases_interrogativas)))
+file.write("\nFrases exclamativas: " + str(len(frases_exclamativas)))
+file.write("\nMensajes: " + str(len(mensajes)))
+file.write("\nTurnos (unidades): " + str(numero_turnos))
+file.write("\n\n-- Actividades --")
+file.write("\nActividades individuales:")
+file.write("\n-> Acordadas: " + str(len(actividades_individuales)))
+file.write("\nActividades en pareja:")
+file.write("\n-> Propuestas: " + str(len(actividades_propuestas_pareja)))
+file.write("\n-> Acordadas: " + str(len(actividades_acordadas_pareja)))
+file.write("\n-> Mal acordadas: " + str(len(actividades_mal_acordadas_pareja)))
+file.write("\nActividades en trío:")
+file.write("\n-> Propuestas: " + str(len(actividades_propuestas_trio)))
+file.write("\n-> Acordadas: " + str(len(actividades_acordadas_trio)))
+file.write("\n-> Mal acordadas: " + str(len(actividades_mal_acordadas_trio)))
+
+file.write("\n\n-------> Categoría: Por alumno <-------\n")
+for alumno in alumnos:
+    file.write("\n\n==> " + alumno)
+    file.write("\nPalabras: " + str(len(stats_per_student[alumno][3])))
+    file.write("\nPalabras distintas: " + str(len(stats_per_student[alumno][6])))
+    file.write("\nPalabras correctas: " + str(len(stats_per_student[alumno][4])))
+    file.write("\nPalabras correctas distintas: " + str(len(stats_per_student[alumno][7])))
+    file.write("\nPalabras incorrectas: " + str(len(stats_per_student[alumno][5])))
+    file.write("\nPalabras incorrectas distintas: " + str(len(stats_per_student[alumno][8])))
+    file.write("\nPalabras reservadas total: " + str(len(stats_per_student[alumno][9])))
+    file.write("\nPalabras reservadas distintas: " + str(len(stats_per_student[alumno][22])))
+    file.write("\nPalabras reservadas total - Categoría Pronombre Interrogativo: " + str(len(stats_per_student[alumno][10])))
+    file.write("\n... de las cuales distintas: " + str(len(stats_per_student[alumno][23])))
+    file.write("\nPalabras reservadas total - Categoría Adjetivo: " + str(len(stats_per_student[alumno][11])))
+    file.write("\n... de las cuales distintas: " + str(len(stats_per_student[alumno][24])))
+    file.write("\nPalabras reservadas total - Categoría Saludo o Despedida: " + str(len(stats_per_student[alumno][12])))
+    file.write("\n... de las cuales distintas: " + str(len(stats_per_student[alumno][25])))
+    file.write("\nPalabras reservadas total - Categoría Frase hecha: " + str(len(stats_per_student[alumno][13])))
+    file.write("\n... de las cuales distintas: " + str(len(stats_per_student[alumno][26])))
+    file.write("\nPalabras reservadas total - Categoría Expresión de afirmación: " + str(len(stats_per_student[alumno][14])))
+    file.write("\n... de las cuales distintas: " + str(len(stats_per_student[alumno][27])))
+    file.write("\nPalabras reservadas total - Categoría Expresión de negación/duda: " + str(len(stats_per_student[alumno][15])))
+    file.write("\n... de las cuales distintas: " + str(len(stats_per_student[alumno][28])))
+    file.write("\nPalabras reservadas total - Categoría Lugar: " + str(len(stats_per_student[alumno][16])))
+    file.write("\n... de las cuales distintas: " + str(len(stats_per_student[alumno][29])))
+    file.write("\nPalabras reservadas total - Categoría Día de la semana: " + str(len(stats_per_student[alumno][17])))
+    file.write("\n... de las cuales distintas: " + str(len(stats_per_student[alumno][30])))
+    file.write("\nPalabras reservadas total - Categoría Adverbio temporal: " + str(len(stats_per_student[alumno][18])))
+    file.write("\n... de las cuales distintas: " + str(len(stats_per_student[alumno][31])))
+    file.write("\nPalabras reservadas total - Categoría Hora: " + str(len(stats_per_student[alumno][19])))
+    file.write("\n... de las cuales distintas: " + str(len(stats_per_student[alumno][32])))
+    file.write("\nPalabras reservadas total - Categoría Preposición \'mit\': " + str(len(stats_per_student[alumno][20])))
+    file.write("\n... de las cuales distintas: " + str(len(stats_per_student[alumno][33])))
+    file.write("\nPalabras reservadas total - Categoría \'Mit\' + Pronombre personal: " + str(len(stats_per_student[alumno][21])))
+    file.write("\n... de las cuales distintas: " + str(len(stats_per_student[alumno][34])))
+    file.write("\nFrases: " + str(len(stats_per_student[alumno][1])))
+    file.write("\nFrases de una sola palabra: " + str(len(stats_per_student[alumno][35])))
+    file.write("\nFrases interrogativas: " + str(len(stats_per_student[alumno][36])))
+    file.write("\nFrases exclamativas: " + str(len(stats_per_student[alumno][37])))
+    file.write("\nMensajes: " + str(len(stats_per_student[alumno][0])))
+    file.write("\nTurnos (unidades): " + str(stats_per_student[alumno][2][1]))
+    file.write("\n\n-- Actividades --")
+    file.write("\nActividades individuales:")
+    file.write("\n-> Acordadas: " + str(len(stats_per_student[alumno][64])))
+    file.write("\nActividades en pareja:")
+    file.write("\n-> Propuestas: " + str(len(stats_per_student[alumno][58])))
+    file.write("\n-> Acordadas: " + str(len(stats_per_student[alumno][59])))
+    file.write("\n-> Mal acordadas: " + str(len(stats_per_student[alumno][60])))
+    file.write("\nActividades en trío:")
+    file.write("\n-> Propuestas: " + str(len(stats_per_student[alumno][61])))
+    file.write("\n-> Acordadas: " + str(len(stats_per_student[alumno][62])))
+    file.write("\n-> Mal acordadas: " + str(len(stats_per_student[alumno][63])))
+
+file.write("\n\n-------> Categoría: Por pareja <-------\n")
+for pareja in parejas:
+    file.write("\n\n==> " + pareja)
+    file.write("\nPalabras: " + str(len(stats_per_pair[pareja][3])))
+    file.write("\nPalabras distintas: " + str(len(stats_per_pair[pareja][6])))
+    file.write("\nPalabras correctas: " + str(len(stats_per_pair[pareja][4])))
+    file.write("\nPalabras correctas distintas: " + str(len(stats_per_pair[pareja][7])))
+    file.write("\nPalabras incorrectas: " + str(len(stats_per_pair[pareja][5])))
+    file.write("\nPalabras incorrectas distintas: " + str(len(stats_per_pair[pareja][8])))
+    file.write("\nPalabras reservadas total: " + str(len(stats_per_pair[pareja][9])))
+    file.write("\nPalabras reservadas distintas: " + str(len(stats_per_pair[pareja][22])))
+    file.write("\nPalabras reservadas total - Categoría Pronombre Interrogativo: " + str(len(stats_per_pair[pareja][10])))
+    file.write("\n... de las cuales distintas: " + str(len(stats_per_pair[pareja][23])))
+    file.write("\nPalabras reservadas total - Categoría Adjetivo: " + str(len(stats_per_pair[pareja][11])))
+    file.write("\n... de las cuales distintas: " + str(len(stats_per_pair[pareja][24])))
+    file.write("\nPalabras reservadas total - Categoría Saludo o Despedida: " + str(len(stats_per_pair[pareja][12])))
+    file.write("\n... de las cuales distintas: " + str(len(stats_per_pair[pareja][25])))
+    file.write("\nPalabras reservadas total - Categoría Frase hecha: " + str(len(stats_per_pair[pareja][13])))
+    file.write("\n... de las cuales distintas: " + str(len(stats_per_pair[pareja][26])))
+    file.write("\nPalabras reservadas total - Categoría Expresión de afirmación: " + str(len(stats_per_pair[pareja][14])))
+    file.write("\n... de las cuales distintas: " + str(len(stats_per_pair[pareja][27])))
+    file.write("\nPalabras reservadas total - Categoría Expresión de negación/duda: " + str(len(stats_per_pair[pareja][15])))
+    file.write("\n... de las cuales distintas: " + str(len(stats_per_pair[pareja][28])))
+    file.write("\nPalabras reservadas total - Categoría Lugar: " + str(len(stats_per_pair[pareja][16])))
+    file.write("\n... de las cuales distintas: " + str(len(stats_per_pair[pareja][29])))
+    file.write("\nPalabras reservadas total - Categoría Día de la semana: " + str(len(stats_per_pair[pareja][17])))
+    file.write("\n... de las cuales distintas: " + str(len(stats_per_pair[pareja][30])))
+    file.write("\nPalabras reservadas total - Categoría Adverbio temporal: " + str(len(stats_per_pair[pareja][18])))
+    file.write("\n... de las cuales distintas: " + str(len(stats_per_pair[pareja][31])))
+    file.write("\nPalabras reservadas total - Categoría Hora: " + str(len(stats_per_pair[pareja][19])))
+    file.write("\n... de las cuales distintas: " + str(len(stats_per_pair[pareja][32])))
+    file.write("\nPalabras reservadas total - Categoría Preposición \'mit\': " + str(len(stats_per_pair[pareja][20])))
+    file.write("\n... de las cuales distintas: " + str(len(stats_per_pair[pareja][33])))
+    file.write("\nPalabras reservadas total - Categoría \'Mit\' + Pronombre personal: " + str(len(stats_per_pair[pareja][21])))
+    file.write("\n... de las cuales distintas: " + str(len(stats_per_pair[pareja][34])))
+    file.write("\nFrases: " + str(len(stats_per_pair[pareja][1])))
+    file.write("\nFrases de una sola palabra: " + str(len(stats_per_pair[pareja][35])))
+    file.write("\nFrases interrogativas: " + str(len(stats_per_pair[pareja][36])))
+    file.write("\nFrases exclamativas: " + str(len(stats_per_pair[pareja][37])))
+    file.write("\nMensajes: " + str(len(stats_per_pair[pareja][0])))
+    file.write("\nTurnos (unidades): " + str(stats_per_pair[pareja][2][1]))
+    file.write("\n\n-- Actividades --")
+    file.write("\nActividades en pareja:")
+    file.write("\n-> Propuestas: " + str(len(stats_per_pair[pareja][58])))
+    file.write("\n-> Acordadas: " + str(len(stats_per_pair[pareja][59])))
+    file.write("\n-> Mal acordadas: " + str(len(stats_per_pair[pareja][60])))
+
+file.write("\n\n-------> Categoría: Por trío <-------\n")
+for trio in trios:
+    file.write("\n\n==> " + trio)
+    file.write("\n\n-- Actividades --")
+    file.write("\nActividades en trío:")
+    file.write("\n-> Propuestas: " + str(len(actividades_por_trios[trio][0])))
+    file.write("\n-> Acordadas: " + str(len(actividades_por_trios[trio][1])))
+    file.write("\n-> Mal acordadas: " + str(len(actividades_por_trios[trio][2])))
+
+file.write("\n\n\nGracias por usar TerminKalender Stats.")
+file.write("\nGithub: https://github.com/luisrozo/tk-stats\n")
+
+print "Fichero generado con estadísticas . . ."
+print "Gracias por usar TerminKalender Stats."
+print "Github: https://github.com/luisrozo/tk-stats"
