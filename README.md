@@ -13,6 +13,8 @@ La aplicación consiste en acordar varias actividades mediante **conversaciones 
 ## Sobre el script
 
 ### Instrucciones de uso
+**Para el correcto funcionamiento de la aplicación, es importante seguir la siguiente [guía de estilo](https://github.com/luisrozo/tk-stats/wiki/Gu%C3%ADa-de-estilo).**
+
 Hay dos scripts: uno (*/app/app_stats.py*) para sacar estadísticas de los *logs* generados por la aplicación, y otro (*/paper/paper_stats.py*) para hacer lo mismo pero con las transcripciones de la versión en papel.
 
 Para usar los scripts, seguir los siguientes pasos:
@@ -47,7 +49,6 @@ Las estadísticas buscadas en los chats se dividen en tres grandes categorías:
 
 A continuación, se listan las estadísticas que se buscan para todas las categorías:
 
-- ~~Tiempo empleado~~
 - Palabras
 - Palabras distintas
 - Palabras correctas/en diccionario
@@ -58,17 +59,12 @@ A continuación, se listan las estadísticas que se buscan para todas las catego
 - Palabras reservadas distintas
 - Palabras reservadas por categoría
 - Palabras reservadas distintas por categoría
-- ~~Estructuras gramaticales precisas por tipos~~
-- ~~Estructuras gramaticales precisas distintas por tipos~~
-- ~~Estructuras gramaticales similares por tipos~~
-- ~~Estructuras gramaticales similares distintas por tipos~~
 - Frases
 - Frases de una sola palabra
 - Frases interrogativas
 - Frases exclamativas
 - Mensajes
 - Turnos (unidades)
-- ~~Turnos (tiempo)~~
 - Actividades en pareja:
     - Actividades pendientes de respuesta
     - Actividades acordadas
