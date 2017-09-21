@@ -70,11 +70,11 @@ A continuación, se listan las estadísticas que se buscan para todas las catego
 - Turnos (unidades)
 - ~~Turnos (tiempo)~~
 - Actividades en pareja:
-    - Actividades propuestas
+    - Actividades pendientes de respuesta
     - Actividades acordadas
     - Actividades mal acordadas
 - Actividades en trío:
-    - Actividades propuestas
+    - Actividades pendientes de respuesta
     - Actividades acordadas
     - Actividades mal acordadas
 
@@ -82,7 +82,7 @@ Además, para las estadísticas globales y por alumno, se buscarán:
 - Actividades individuales:
     - Actividades acordadas
 
-Para ver qué es exactamente una *[palabra reservada](https://github.com/luisrozo/tk-stats/wiki/Palabras-reservadas)* o una *[estructura gramatical](https://github.com/luisrozo/tk-stats/wiki/Estructura-gramatical)*, haz click en los respectivos enlaces.
+Para ver qué es exactamente una *[palabra reservada](https://github.com/luisrozo/tk-stats/wiki/Palabras-reservadas)* o una *[estructura gramatical](https://github.com/luisrozo/tk-stats/wiki/Estructura-gramatical)*, haz click en los respectivos enlaces. También puedes ver más información sobre las [actividades](https://github.com/luisrozo/tk-stats/wiki/Actividades).
 
 ### Preprocesado
 Con el fin de determinar estadísticas más cercanas a la realidad y con mayor facilidad, antes de la extracción de estadísticas se realiza un preprocesado, tanto a los logs de la aplicación como a las transcripciones de la versión en papel. Este preprocesado realiza los siguientes cambios:
