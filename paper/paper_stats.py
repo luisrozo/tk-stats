@@ -11,6 +11,7 @@ from openpyxl import load_workbook
 import os
 import re
 import enchant
+import itertools
 
 
 def aplicar_preprocesado(msg):
@@ -391,6 +392,28 @@ def usaExpresionReservada(frase):
         i += 1
 
     return expresionesUtilizadas
+
+
+class Actividad:
+    def __init__(self, autor, partners, position, what, where, where_exactly, trio):
+        self.autor = autor
+        self.partners = partners
+        self.position = position
+        self.what = what
+        self.where = where
+        self.where_exactly = where_exactly
+        self.trio = trio
+
+    def __str__(self):
+        print "--------------------------"
+        print "Autor: " + self.autor
+        print "Partners: " + self.partners
+        print "Position: " + self.position
+        print "What: " + self.what
+        print "Where: " + self.where
+        print "Where exactly: " + self.where_exactly
+        print "Trio: " + str(self.trio)
+        print "--------------------------"
 
 stats_per_student = {}
 stats_per_pair = {}
@@ -847,7 +870,7 @@ for mensaje in Mensajes:
                     stats_per_pair[mensaje.pareja][8].append(palabra)
 
     # Palabras reservadas
-    expresiones_en_mensaje = usaExpresionReservada(mensaje.mensaje)
+    '''expresiones_en_mensaje = usaExpresionReservada(mensaje.mensaje)
     if len(expresiones_en_mensaje) >= 1:
         for expresion in expresiones_en_mensaje:
             palabras_reservadas_total.append(expresion)
@@ -1022,7 +1045,7 @@ for mensaje in Mensajes:
 
             else:
                 print "Esto es más raro que la historia de Manuel Bartual..."
-
+'''
 
 # Extracción de actividades
 agendas = []
@@ -1031,8 +1054,251 @@ for fichero in os.listdir("."):
     if "Agenda" in fichero and "#" not in fichero:
         agendas.append(fichero)
 
+autor = ""
+partners = ""
+day = ""
+time = ""
+position = ""
+what = ""
+where = ""
+where_exactly = ""
+trio = False
+trios = []
+actividades = []
+
 for ag in agendas:
     agenda = load_workbook(ag)
+
+    for hoja in agenda:
+        inicio = 'B1'
+        fin = 'G' + str(hoja.max_row)
+        maximo_filas = hoja.max_row
+        intervalo = inicio + ':' + fin
+        celdas = hoja[intervalo]
+        i = 0
+
+        while i < maximo_filas:
+            if celdas[i][0].font.i:
+                autor = celdas[i][0].value.encode("utf-8")
+                fila_inicio = i
+                i += 1
+
+                while i <= fila_inicio + 20:
+                    j = 2
+                    while j < 6:
+                        if celdas[i][j].value is not None:
+                            partners = celdas[i][j].value.encode("utf-8")
+
+                            if i <= fila_inicio + 4:
+                                day = "Mittwoch, "
+                            elif i <= fila_inicio + 8:
+                                day = "Donnerstag, "
+                            elif i <= fila_inicio + 12:
+                                day = "Freitag, "
+                            elif i <= fila_inicio + 16:
+                                day = "Samstag, "
+                            else:
+                                day = "Sonntag, "
+
+                            if j == 2:
+                                time = "Morgens"
+                            elif j == 3:
+                                time = "Mittags"
+                            elif j == 4:
+                                time = "Nachmittags"
+                            else:
+                                time = "Abends"
+
+                            position = day + time
+
+                            if celdas[i+1][j].value is None:
+                                what = ""
+                            else:
+                                what = celdas[i+1][j].value.encode("utf-8")
+
+                            if celdas[i+2][j].value is None:
+                                where = ""
+                            else:
+                                where = celdas[i+2][j].value.encode("utf-8")
+
+                            if celdas[i+3][j].value is None:
+                                where_exactly = ""
+                            else:
+                                where_exactly = celdas[i+3][j].value.encode("utf-8")
+
+                            if len(partners.split()) > 3:
+                                trio = True
+                                try:
+                                    trio_string = autor + "-" + partners.split()[0] + " " + partners.split()[1] + "-" + partners.split()[3] + " " + partners.split()[4]
+                                    trios.append(trio_string)
+                                except IndexError:
+                                    print partners
+
+                            else:
+                                trio = False
+
+                            actividad = Actividad(autor, partners, position, what, where, where_exactly, trio)
+                            actividades.append(actividad)
+
+                        j += 1
+
+                    i += 4
+
+            i += 1
+
+# Se utilizará un diccionario para las estadísticas en trío con los siguientes índices:
+# 0: Actividades propuestas en trio
+# 1: Actividades acordadas en trio
+# 2: Actividades mal acordadas en trio
+actividades_por_trios = {}
+
+for trio in trios:
+    actividades_por_trios[trio] = [["Actividades propuestas en trio", ],
+                                   ["Actividades acordadas en trio", ],
+                                   ["Actividades mal acordadas en trio", ],
+                                   ]
+
+for actividad in actividades:
+    try:
+        print actividad
+    except TypeError:
+        pass
+
+    i = 0
+    acordando_actividad = False
+    index = actividades.index(actividad)
+
+    if not actividad.trio:
+        # Actividad individual
+        if actividad.autor == actividad.partners or actividad.partners == "":
+            actividades_acordadas_individuales.append(actividad)
+            stats_per_student[actividad.autor][64].append(actividad)
+
+        # Actividad en pareja
+        else:
+            while i < len(actividades):
+                if i != index and not actividades[i].trio:
+                    if actividad.autor == actividades[i].partners and actividad.partners == actividades[i].autor:
+                        acordando_actividad = True
+                        alumno1 = actividad.autor
+                        alumno2 = actividades[i].autor
+                        pareja = alumno1 + "-" + alumno2
+                        if pareja not in stats_per_pair.keys():
+                            pareja = alumno2 + "-" + alumno1
+
+                        if actividad.position == actividades[i].position and \
+                            actividad.what == actividades[i].what and \
+                            actividad.where == actividades[i].where and \
+                                actividad.where_exactly == actividades[i].where_exactly:
+
+                            actividades_acordadas_pareja.append(actividad)
+                            stats_per_student[alumno1][59].append(actividad)
+                            if pareja in stats_per_pair.keys():
+                                stats_per_pair[pareja][59].append(actividad)
+
+                        else:
+                            actividades_mal_acordadas_pareja.append(actividad)
+                            stats_per_student[alumno1][60].append(actividad)
+                            if pareja in stats_per_pair.keys():
+                                stats_per_pair[pareja][60].append(actividad)
+                i += 1
+
+            if not acordando_actividad:
+                alumno1 = actividad.autor
+                alumno2 = actividad.partners
+                pareja = alumno1 + "-" + alumno2
+                if pareja not in stats_per_pair.keys():
+                    pareja = alumno2 + "-" + alumno1
+
+                actividades_propuestas_pareja.append(actividad)
+                stats_per_student[alumno1][58].append(actividad)
+                if pareja in stats_per_pair.keys():
+                    stats_per_pair[pareja][58].append(actividad)
+
+    # Actividad en trío
+    else:
+        j = 0
+        while i < len(actividades):
+            if i != index and actividades[i].trio:
+                if actividad.autor in actividades[i].partners and actividades[i].autor in actividad.partners:
+                    if actividades[i].partners.split("/")[0] != actividades[i].partners.split("/")[1]:
+                        while j < len(actividades):
+                            if j != index and actividades[j].trio:
+                                if actividad.autor in actividades[j].partners and actividades[i].autor in actividades[j].partners:
+                                    acordando_actividad = True
+                                    alumno1 = actividad.autor
+                                    alumno2 = actividades[i].autor
+                                    alumno3 = actividades[j].autor
+                                    trio = [alumno1, alumno2, alumno3]
+                                    trio_string = ""
+
+                                    for comb in list(itertools.permutations(trio)):
+                                        trio_string = comb[0] + "-" + comb[1] + "-" + comb[2]
+                                        if trio_string in actividades_por_trios.keys():
+                                            break
+
+                                    if actividad.position == actividades[i].position == actividades[j].position and \
+                                        actividad.what == actividades[i].what == actividades[j].what and \
+                                        actividad.where == actividades[i].where == actividades[j].where and \
+                                            actividad.where_exactly == actividades[i].where_exactly == actividades[j].where_exactly:
+
+                                        actividades_acordadas_trio.append(actividad)
+                                        stats_per_student[alumno1][62].append(actividad)
+                                        if trio_string in actividades_por_trios.keys():
+                                            actividades_por_trios[trio_string][1].append(actividad)
+
+                                    else:
+                                        actividades_mal_acordadas_trio.append(actividad)
+                                        stats_per_student[alumno1][63].append(actividad)
+                                        if trio_string in actividades_por_trios.keys():
+                                            actividades_por_trios[trio_string][2].append(actividad)
+                            j += 1
+                    else:
+                        if actividad.partners.split("-")[0] == actividad.partners.split("-")[1]:
+                            acordando_actividad = True
+                            alumno1 = actividad.autor
+                            alumno2 = actividad.partners.split("-")[0]
+                            trio = [alumno1, alumno2, alumno2]
+                            trio_string = ""
+
+                            for comb in list(itertools.permutations(trio)):
+                                trio_string = comb[0] + "-" + comb[1] + "-" + comb[2]
+                                if trio_string in actividades_por_trios.keys():
+                                    break
+
+                            if actividad.position == actividades[i].position and \
+                                actividad.what_exactly == actividades[i].what_exactly and \
+                                actividad.where == actividades[i].where and \
+                                    actividad.where_exactly == actividades[i].where_exactly:
+
+                                actividades_acordadas_trio.append(actividad)
+                                stats_per_student[alumno1][62].append(actividad)
+                                if trio_string in actividades_por_trios.keys():
+                                    actividades_por_trios[trio_string][1].append(actividad)
+
+                            else:
+                                actividades_mal_acordadas_trio.append(actividad)
+                                stats_per_student[alumno1][63].append(actividad)
+                                if trio_string in actividades_por_trios.keys():
+                                    actividades_por_trios[trio_string][2].append(actividad)
+            i += 1
+
+        if not acordando_actividad:
+            alumno1 = actividad.autor
+            alumno2 = actividad.partners.split("/")[0]
+            alumno3 = actividad.partners.split("/")[1]
+            trio = [alumno1, alumno2, alumno3]
+            trio_string = ""
+
+            for comb in list(itertools.permutations(trio)):
+                trio_string = comb[0] + "-" + comb[1] + "-" + comb[2]
+                if trio_string in actividades_por_trios.keys():
+                    break
+
+            actividades_propuestas_trio.append(actividad)
+            stats_per_student[alumno1][61].append(actividad)
+            if trio_string in actividades_por_trios.keys():
+                actividades_por_trios[trio_string][0].append(actividad)
 
 # Salida a fichero de texto
 file = open("stats.txt", "w")
@@ -1053,7 +1319,10 @@ file.write("\nPalabras reservadas total: " + str(len(palabras_reservadas_total))
 file.write("\nPalabras reservadas distintas: " + str(len(palabras_reservadas_distintas)))
 i = 0
 while i < len(palabras_reservadas_total_por_categoria):
-    file.write("\nPalabras reservadas total - Categoría " + palabras_reservadas_total_por_categoria[i][0][0] + ": " + str(len(palabras_reservadas_total_por_categoria[i])))
+    try:
+        file.write("\nPalabras reservadas total - Categoría " + palabras_reservadas_total_por_categoria[i][0][0] + ": " + str(len(palabras_reservadas_total_por_categoria[i])))
+    except IndexError:
+        file.write("\nPalabras reservadas total - Categoría " + tipos_expresiones[i] + ": " + str(len(palabras_reservadas_total_por_categoria[i])))
     file.write("\n... de las cuales distintas: " + str(len(palabras_reservadas_distintas_por_categoria[i])))
     i += 1
 file.write("\nFrases: " + str(len(frases)))
@@ -1062,9 +1331,9 @@ file.write("\nFrases interrogativas: " + str(len(frases_interrogativas)))
 file.write("\nFrases exclamativas: " + str(len(frases_exclamativas)))
 file.write("\nMensajes: " + str(len(mensajes)))
 file.write("\nTurnos (unidades): " + str(numero_turnos))
-'''file.write("\n\n-- Actividades --")
+file.write("\n\n-- Actividades --")
 file.write("\nActividades individuales:")
-file.write("\n-> Acordadas: " + str(len(actividades_individuales)))
+file.write("\n-> Acordadas: " + str(len(actividades_acordadas_individuales)))
 file.write("\nActividades en pareja:")
 file.write("\n-> Propuestas: " + str(len(actividades_propuestas_pareja)))
 file.write("\n-> Acordadas: " + str(len(actividades_acordadas_pareja)))
@@ -1072,7 +1341,7 @@ file.write("\n-> Mal acordadas: " + str(len(actividades_mal_acordadas_pareja)))
 file.write("\nActividades en trío:")
 file.write("\n-> Propuestas: " + str(len(actividades_propuestas_trio)))
 file.write("\n-> Acordadas: " + str(len(actividades_acordadas_trio)))
-file.write("\n-> Mal acordadas: " + str(len(actividades_mal_acordadas_trio)))'''
+file.write("\n-> Mal acordadas: " + str(len(actividades_mal_acordadas_trio)))
 
 file.write("\n\n-------> Categoría: Por alumno <-------\n")
 for alumno in alumnos:
@@ -1115,7 +1384,7 @@ for alumno in alumnos:
     file.write("\nFrases exclamativas: " + str(len(stats_per_student[alumno][37]) - 1))
     file.write("\nMensajes: " + str(len(stats_per_student[alumno][0]) - 1))
     file.write("\nTurnos (unidades): " + str(stats_per_student[alumno][2][1]))
-    '''file.write("\n\n-- Actividades --")
+    file.write("\n\n-- Actividades --")
     file.write("\nActividades individuales:")
     file.write("\n-> Acordadas: " + str(len(stats_per_student[alumno][64]) - 1))
     file.write("\nActividades en pareja:")
@@ -1125,7 +1394,7 @@ for alumno in alumnos:
     file.write("\nActividades en trío:")
     file.write("\n-> Pendientes de respuesta: " + str(len(stats_per_student[alumno][61]) - 1))
     file.write("\n-> Acordadas: " + str(len(stats_per_student[alumno][62]) - 1))
-    file.write("\n-> Mal acordadas: " + str(len(stats_per_student[alumno][63]) - 1))'''
+    file.write("\n-> Mal acordadas: " + str(len(stats_per_student[alumno][63]) - 1))
 
 file.write("\n\n-------> Categoría: Por pareja <-------\n")
 for pareja in parejas:
@@ -1169,7 +1438,7 @@ for pareja in parejas:
     file.write("\nMensajes: " + str(len(stats_per_pair[pareja][0]) - 1))
     file.write("\nTurnos (unidades): " + str(stats_per_pair[pareja][2][1]))
     file.write("\n\n-- Actividades --")
-    '''file.write("\nActividades en pareja:")
+    file.write("\nActividades en pareja:")
     file.write("\n-> Pendientes de respuesta: " + str(len(stats_per_pair[pareja][58]) - 1))
     file.write("\n-> Acordadas: " + str(len(stats_per_pair[pareja][59]) - 1))
     file.write("\n-> Mal acordadas: " + str(len(stats_per_pair[pareja][60]) - 1))
@@ -1181,7 +1450,7 @@ for trio in trios:
     file.write("\nActividades en trío:")
     file.write("\n-> Pendientes de respuesta: " + str(len(actividades_por_trios[trio][0]) - 1))
     file.write("\n-> Acordadas: " + str(len(actividades_por_trios[trio][1]) - 1))
-    file.write("\n-> Mal acordadas: " + str(len(actividades_por_trios[trio][2]) - 1))'''
+    file.write("\n-> Mal acordadas: " + str(len(actividades_por_trios[trio][2]) - 1))
 
 file.write("\n\n\nGracias por usar TerminKalender Stats.")
 file.write("\nGithub: https://github.com/luisrozo/tk-stats\n")
