@@ -103,4 +103,6 @@ Con el fin de determinar estadísticas más cercanas a la realidad y con mayor f
 ### Salida del script
 El script generará un fichero de texto plano en la carpeta donde se ejecute el mismo que contendrá información sobre las estadísticas que se han extrado.
 
+## *Funding*
+
 *Este proyecto está financiado por la Convocatoria de Proyectos de Innovación y Mejora Docente del curso 2016/17 de la Universidad de Cádiz, en el marco del proyecto "El uso de apps y su impacto en el proceso de aprendizaje del alumnado" (código sol-201600064634-tra)*
